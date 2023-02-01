@@ -1,6 +1,8 @@
 import fs from "fs";
 import PDFParser from "pdf2json";
 
+// function pdfReader recieves the filePath of the pdf file and
+// parse the file to a txt
 function pdfReader (filePath) {
 
     const pdfParser = new PDFParser(this,1);
@@ -12,29 +14,41 @@ function pdfReader (filePath) {
     pdfParser.loadPDF(filePath);
 };
 
-fs.readFile('./uploads/demo.content.txt', 'utf-8', function (err, data) {
+// read the txt file, containing the data from the pdf
+fs.readFile('./demo.content.txt', 'utf-8', function (err, data) {
     if (err) {
         console.log(err);
     } else {
-        console.log(data);
+        // token the data in an Array of strings(lines)
         const dataArray = data.split('\r\n');
         readTokens(dataArray);
     }
 });
 
+// array of skills to match with the lines
 const skills = ['Python', 'SQL', 'Mongo', 'Angular'];
 let skillsList = [];
 
+// function that process the array with the tokens and search for keywords
 function readTokens (dataArray) {
+
+    let relevantInformation = {};
+
     for (const line of dataArray) {
-        for (const skill of skills) {
-            if (line.includes(skill) === true && skillsList.includes(skill) === false) {
-                skillsList.push(skill);
-            }
+        if (line.includes("Celular")) {
+            relevantInformation.celphone = line.split(" ")[1].trim();
+        }
+        if (line.includes("Email:")) {
+            const begin = line.indexOf('Email:');
+            const last = line.lastIndexOf('Email:');
+            console.log(begin);
+            console.log(last);
+            relevantInformation.email = line.split(" ")[begin + 6].trim();
         }
     }
 
-    console.log(skillsList);
+    console.log(relevantInformation);
+    return relevantInformation;
 };
 
 export { pdfReader }

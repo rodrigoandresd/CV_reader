@@ -1,5 +1,6 @@
 // entry point for reader app backend
-import express, { Router } from 'express';
+import express from 'express';
+import cors from 'cors';
 import { dataBaseConnect } from './database/db_config.js';
 import { consultorRouter } from './components/network.js';
 
@@ -8,6 +9,8 @@ const app = express();
 
 // init the dataBase conecction
 dataBaseConnect();
+
+app.use(cors());
 
 app.use(express.json());
 
