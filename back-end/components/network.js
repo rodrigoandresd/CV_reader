@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import multer from 'multer';
 import { createConsultor, uploadFile } from './controller.js';
+import { pdfReader } from '../uploads/automate.js';
 
 export const consultorRouter = Router();
 
@@ -32,6 +32,7 @@ consultorRouter.post('/', function(request, response) {
 });
 
 consultorRouter.post('/upload', uploadFile.single('myFile'), async function(request, response) {
-    console.log(request.file)
+    console.log(request.file);
+    pdfReader(`./uploads/${request.file.originalname}`);
     response.send('File uploaded');
 });
