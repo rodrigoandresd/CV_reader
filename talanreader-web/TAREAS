@@ -1,0 +1,25 @@
+Tareas a realizar:
+
+Desarrollar una interfaz fácil de entender para cargar los archivos CV. (Formato PDF).
+Agrega un botón para seleccionar y cargar el archivo PDF.
+Conexión del botón con el backend para recibir el archivo
+Incorporar librería para la extracción de la información
+Funciones para el procesamiento de la información
+Componente para previsualización (front)
+Generación automática de un formato de CV estandarizado para presentar la información anteriormente extraída
+verificación de datos manuales por el usuario y edición en tiempo real de los mismos
+Botón para almacenamiento de datos
+conexión con db y almacenamiento de datos en db
+Armado del Testing y debugging del Código para garantizar su precisión y fiabilidad
+Documentación completa del feature
+
+Orden cronológico para el usuario:
+
+Visualización de la página que carga los archivos CV
+Botón para subir archivo
+Sube el archivo
+App lee el archivo, extrae información
+Procesamiento de información
+El usuario es enviado a la página de previsualización y verificación de datos manuales por el usuario
+Verificación y edición por usuario
+Envío a db, con botón de guardar
