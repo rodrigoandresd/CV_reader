@@ -1,4 +1,16 @@
+import multer from 'multer';
 import { addConsultor } from './store.js';
+
+const storage = multer.diskStorage({
+    destination: function (request, file, cb) {
+        cb(null, '../back-end/uploads');
+    },
+    filename: function (request, file, cb) {
+        cb(null, `${Date.now()}-${file.originalname}`);
+    }
+});
+
+const uploadFile = multer({ storage: storage});
 
 function createConsultor (name, email, skills, position) {
     
@@ -23,4 +35,4 @@ function createConsultor (name, email, skills, position) {
     });  
 };
 
-export { createConsultor };
+export { createConsultor, uploadFile };

@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import { createConsultor } from './controller.js';
+import multer from 'multer';
+import { createConsultor, uploadFile } from './controller.js';
 
 export const consultorRouter = Router();
 
@@ -28,4 +29,9 @@ consultorRouter.post('/', function(request, response) {
             response.send(error);
             console.log(error);
         });
+});
+
+consultorRouter.post('/upload', uploadFile.single('myFile'), async function(request, response) {
+    console.log(request.file)
+    response.send('File uploaded');
 });
