@@ -1,31 +1,31 @@
 import fs from "fs";
-import pdfParser from 'pdf-parse';
+import pdf from 'pdf-parse';
 import natural from 'natural';
 
-const getPDF = async (fileName) => {
-    let readFileSync = fs.readFileSync(fileName);
+let dataBuffer = fs.readFileSync('./CV_2.pdf');
 
-    try {
-        let pdfExtract = pdfParse(readFileSync);
-        console.log('before the promise');
-        let content = (await pdfExtract).text;
-        console.log('after the promise');
-        return content;
-        console.log('File content: ', pdfExtract.text);
-        console.log('Total pages: ', pdfExtract.numpages);
-        console.log('All content: ', pdfExtract.info);
-        console.log('Type of: ', typeof(pdfExtract.text));
-    } catch (error) {
-        throw new Error(error)
-    }
-}
+pdf(dataBuffer).then(function (data) {
+    const content = data.text;
+    processData(content);
+}).catch(e => {
+    console.log(e);
+});
 
-const file = './CV1.pdf';
-getPDF(file);
+async function processData (content) {
+    await console.log(typeof(content));
+};
+
+processData();
+
+// const pdfToRead= './CV_1.pdf';
+// async function myFunction () {
+//     const content = await getPDF(pdfToRead);
+//     console.log(content);
+// }
+
+// myFunction();
 
 //Parse a PDF file then write to a JSON file
-
-
 
 // function pdfReader (filePath) {
 //     const pdfParser = new PDFParser();
