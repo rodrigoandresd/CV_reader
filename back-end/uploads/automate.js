@@ -3,7 +3,7 @@ import pdf from 'pdf-parse';
 import natural from 'natural';
 import sw from 'remove-stopwords';
 
-let dataBuffer = fs.readFileSync('./CV_10.pdf');
+let dataBuffer = fs.readFileSync('./CV_4.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -17,8 +17,12 @@ async function processData (content) {
     // console.log(content);
     const lowerCaseContent = content.toLowerCase();
     const tokens = lowerCaseContent.split(/[\s\r\n]/);
+    const tokens2 = lowerCaseContent.split(/[\/\s\r\n]/);
     const arrayRemoved = sw.removeStopwords(tokens);
+    const arrayRemoved2 = sw.removeStopwords(tokens2);
     const reducedContent = arrayRemoved.join(' ');
+    const reducedContent2 = arrayRemoved2.join(' ');
+    
 
     // const tokenizer = new natural.SentenceTokenizer();
     // const sentenceTokens = tokenizer.tokenize(reducedContent);
@@ -33,8 +37,8 @@ async function processData (content) {
         consultorObj['email'] = 'No email found';
     }
 
-    const phonePattern = RegExp(/\d{2}-\d{3}-\d{3}-\d{2}-\d{2}|\d{12}|\d{3}\s\d{3}\s\d{4}/);
-    let phoneArray = phonePattern.exec(reducedContent);
+    const phonePattern = RegExp(/[\+\(]?\d{2,3}\)?[\s-\.]*\d{3}[\s-\.]*\d{4}[\s-\.]*\d{3}/gm);
+    let phoneArray = phonePattern.exec(reducedContent2);
     if (phoneArray) {
         const consultorPhone = phoneArray[0];
         consultorObj['phone'] = consultorPhone;
