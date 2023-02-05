@@ -3,7 +3,7 @@
 
 ## David Andres Perez Cruz
 
-Elaboración de lista de tareas 
+Elaboración de lista de tareas
 https://github.com/mlorenzoalaniz/talanreader/blob/dev/TAREAS
 
 Botón para seleccionar y cargar el archivo PDF
@@ -14,7 +14,7 @@ https://github.com/mlorenzoalaniz/talanreader/commit/624fdd647b1f96a13e3e9039f1d
 
 ## Rodrigo Andres Duque Gomez
 
-Elaboración de lista de tareas 
+Elaboración de lista de tareas
 https://github.com/mlorenzoalaniz/talanreader/blob/dev/TAREAS
 
 Inició componente de previsualización
@@ -28,7 +28,7 @@ https://github.com/mlorenzoalaniz/talanreader/commit/624fdd647b1f96a13e3e9039f1d
 
 ## Paola Suarez
 
-Elaboración de lista de tareas 
+Elaboración de lista de tareas
 https://github.com/mlorenzoalaniz/talanreader/blob/dev/TAREAS
 
 Botón para seleccionar y cargar el archivo PDF
@@ -62,3 +62,23 @@ https://github.com/mlorenzoalaniz/talanreader/commit/11cba7cdf627752fa005550e675
 
 Correccion de funcion de procesamiento de datos
 https://github.com/mlorenzoalaniz/talanreader/commit/11cba7cdf627752fa005550e6756ba2ed22cf2f1
+
+# 3 de febrero de 2023
+
+## David Andres Perez Cruz
+
+Incorporar librerías para la extracción de la información y
+Funciones para el procesamiento de la información
+https://github.com/mlorenzoalaniz/talanreader/blob/regular_expressions/back-end/uploads/automate.js
+
+## Rodrigo Andres Duque Gomez
+
+Incorporar librerías para la extracción de la información y
+Funciones para el procesamiento de la información
+https://github.com/mlorenzoalaniz/talanreader/blob/regular_expressions/back-end/uploads/automate.js
+
+## Paola Suarez
+
+Incorporar librerías para la extracción de la información y
+Funciones para el procesamiento de la información
+https://github.com/mlorenzoalaniz/talanreader/blob/regular_expressions/back-end/uploads/automate.js
