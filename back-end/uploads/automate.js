@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_9.pdf');
+let dataBuffer = fs.readFileSync('./CV_2.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -41,7 +41,7 @@ async function processData (content) {
     // const phonePattern = RegExp(/[\+\(]?\d{2,3}[\)]?[\s-]?\d*[-\s.]?\d*[-\s.]?\d*[-\s.]?\d*/g);
     let phoneArray = phonePattern.exec(lowerCaseContent);
 
-    console.log(lowerCaseContent);
+    // console.log(lowerCaseContent);
     if (phoneArray) {
         const consultorPhone = phoneArray[0];
         consultorObj['phone'] = consultorPhone;
@@ -58,48 +58,46 @@ async function processData (content) {
         consultorObj['ConsultorName'] = 'No name found';
     }
 
-    console.log(consultorObj);
+    //console.log(consultorObj);
 
 
     // const tokenizer = new natural.WordTokenizer();
-    // const sentece = new natural.SentenceTokenizer();
-    // const tokenizer_2 = new natural.WordPunctTokenizer();
     // const token_2 = (tokenizer.tokenize(content));
 
     // console.log(token_2);
     // console.log(sentece.tokenize(content));
     // console.log(tokenizer_2.tokenize(content));
 
-    // let keys = ["NOMBRES", "APELLIDOS", "ESTADO", "TELEFONOS", "TITULO", "FECHA", "Email", "EXPERIENCE" ];
+    let keys = ["experience", "education", "skills", "educacion", "experiencia", "habilidades"];
     // let values = {};
 
-    // for (let i = 0; i < token_2.length;) {
-    //     if (keys.includes(token_2[i])) {
-    //         let currentKey = token_2[i];
-    //         let currentValue = "";
-    //         i++;
-    //         while (!keys.includes(token_2[i])) {
-    //             currentValue += token_2[i] + " ";
-    //             i++;
-    //             if (i === token_2.length) {
-    //                 break;
-    //             }
-    //         }
-    //         values[currentKey] = currentValue.trim();
-    //     } else {
-    //         i++;
-    //     }
-    // }
-    // const jsonString = JSON.stringify(values);
-    // fs.writeFile('./demo.json', jsonString, (err) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         console.log('created');
+    for (let i = 0; i < tokens.length;) {
+        if (keys.includes(tokens[i])) {
+            let currentKey = tokens[i];
+            let currentValue = "";
+            i++;
+            while (!keys.includes(tokens[i])) {
+                currentValue += tokens[i] + " ";
+                i++;
+                if (i === tokens.length) {
+                    break;
+                }
+            }
+            consultorObj[currentKey] = currentValue.trim();
+        } else {
+            i++;
+        }
+    }
+    const jsonString = JSON.stringify(consultorObj);
+    fs.writeFile('./demo.json', jsonString, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('created');
 
-    //     }
-    // })
-    // console.log(values);
+        }
+    })
+    console.log(consultorObj);
 };
 
 
