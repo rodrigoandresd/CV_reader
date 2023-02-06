@@ -3,7 +3,9 @@ import pdf from 'pdf-parse';
 import natural from 'natural';
 import sw from 'remove-stopwords';
 
-let dataBuffer = fs.readFileSync('./CV_4.pdf');
+
+
+let dataBuffer = fs.readFileSync('./CV_9.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -17,16 +19,13 @@ async function processData (content) {
     // console.log(content);
     const lowerCaseContent = content.toLowerCase();
     const tokens = lowerCaseContent.split(/[\s\r\n]/);
-    const tokens2 = lowerCaseContent.split(/[\/\s\r\n]/);
     const arrayRemoved = sw.removeStopwords(tokens);
-    const arrayRemoved2 = sw.removeStopwords(tokens2);
     const reducedContent = arrayRemoved.join(' ');
-    const reducedContent2 = arrayRemoved2.join(' ');
-    
 
-    // const tokenizer = new natural.SentenceTokenizer();
+
+    // const tokenizer = new natural.WordTokenizer();
     // const sentenceTokens = tokenizer.tokenize(reducedContent);
-    
+
     let consultorObj = {};
     const emailPattern = RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}/);
     let emailArray = emailPattern.exec(reducedContent);
@@ -37,8 +36,12 @@ async function processData (content) {
         consultorObj['email'] = 'No email found';
     }
 
-    const phonePattern = RegExp(/[\+\(]?\d{2,3}\)?[\s-\.]*\d{3}[\s-\.]*\d{4}[\s-\.]*\d{3}/gm);
-    let phoneArray = phonePattern.exec(reducedContent2);
+
+    const phonePattern = RegExp(/[\+\(]?\d{2,3}\)?[\s-\.]*\d{3}[\s-\.]*\d{4}[\s-\.]*\d{3}/g);
+    // const phonePattern = RegExp(/[\+\(]?\d{2,3}[\)]?[\s-]?\d*[-\s.]?\d*[-\s.]?\d*[-\s.]?\d*/g);
+    let phoneArray = phonePattern.exec(lowerCaseContent);
+
+    console.log(lowerCaseContent);
     if (phoneArray) {
         const consultorPhone = phoneArray[0];
         consultorObj['phone'] = consultorPhone;
@@ -57,7 +60,7 @@ async function processData (content) {
 
     console.log(consultorObj);
 
-    
+
     // const tokenizer = new natural.WordTokenizer();
     // const sentece = new natural.SentenceTokenizer();
     // const tokenizer_2 = new natural.WordPunctTokenizer();
@@ -93,7 +96,7 @@ async function processData (content) {
     //         console.log(err);
     //     } else {
     //         console.log('created');
-        
+
     //     }
     // })
     // console.log(values);
