@@ -1,5 +1,66 @@
-<p>prefilled</p>
-{{ formTitle }}
+<div class="container">
+
+    <h1> Display Data from Json </h1>
+
+    <form [formGroup]="editarForm" (ngSubmit)="postForm(editarForm.value)">
+        <div class="form-group">
+        <label for="exampleFormControlInput1">Nombre</label>
+    <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="nombre">
+        </div>
+        <div class="form-group">
+    <label for="exampleFormControlInput1">Direccion</label>
+    <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="direccion">
+    </div>
+    <div class="form-group row">
+    
+            <div class="col">
+    
+                <label for="exampleFormControlInput1">DNI</label>
+                <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="dni">
+            </div>
+    
+            <div class="col">
+                <label for="exampleFormControlInput1">Codigo Postal</label>
+                <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="codigostal">
+            </div>
+    
+            <div class="col">
+                <label for="exampleFormControlInput1">Telefono</label>
+                <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="telefono">
+            </div>
+        </div>        
+    <div class="form-group">
+    <label for="exampleFormControlInput1">Fecha Nacimiento</label>
+    <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="fechaNacimiento">
+    </div>
+    <div class="form-group ">
+    <label for="exampleFormControlInput1">Correo</label>
+    <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="correo">
+    </div>
+    <div class="form-group  ">
+    <label for="exampleFormControlInput1">Genero</label>
+    <input type="text" class="form-control" placeholder="Nombre del paciente" formControlName="genero">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-danger" (click)="eliminar()">Eliminar</button>
+    <button type="button" class="btn btn-dark" (click)="salir()">Salir</button>
+    
+    </form>
+    
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let consultor of consultors">
+                <td>{{ consultor.consultorName  }}</td>
+                <td>{{ consultor.consultorPhone }}</td>
+                <td>{{ consultor.consultorEmail }}</td>
+                <td>{{ consultor.consultorAcademic }}</td>
+                <td>{{ consultor.consultorWorkExperience }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 <input type="text" [(ngModel)]="formTitle" />
 <div class="field">

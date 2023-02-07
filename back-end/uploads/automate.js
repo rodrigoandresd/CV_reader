@@ -131,9 +131,18 @@ async function processData(content) {
             i++;
         }
     }
+    let consultorData = JSON.stringify(consultorObj);
 
+    fs.writeFileSync('../../talanreader-web/src/app/demo.json', consultorData, (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('file created');
+        }
+});
     console.log(consultorObj);
 };
+
 
     // const tokenizer = new natural.WordTokenizer();
     // const sentenceTokens = tokenizer.tokenize(reducedContent);
