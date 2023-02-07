@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
 
     <h1> Display Data from Json </h1>
 
@@ -46,20 +46,17 @@
     <button type="button" class="btn btn-danger" (click)="eliminar()">Eliminar</button>
     <button type="button" class="btn btn-dark" (click)="salir()">Salir</button>
     
-    </form>
-    
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let consultor of consultors">
-                <td>{{ consultor.consultorName  }}</td>
-                <td>{{ consultor.consultorPhone }}</td>
-                <td>{{ consultor.consultorEmail }}</td>
-                <td>{{ consultor.consultorAcademic }}</td>
-                <td>{{ consultor.consultorWorkExperience }}</td>
-            </tr>
-        </tbody>
-    </table>
+</div>  -->
+     
+<div class="field">
+        <ul *ngFor="let consultor of consultors">
+            <li>Name: <input type="text" class="input" [value]="consultor.consultorName"></li>
+            <li>Phone: <input type="text" class="input" [value]="consultor.consultorPhone"></li>
+            <li>Email: <input type="text" class="input" [value]="consultor.consultorEmail"></li>
+            <li>Education:<textarea class="textarea" placeholder="Text area" [value]="consultor.consultorAcademic"></textarea></li>
+            <li>Work Experience:<textarea class="textarea" placeholder="Text area" [value]="consultor.consultorWorkExperience"></textarea></li>
+            <li>Skills: </li>
+        </ul>   
 </div>
 
 <input type="text" [(ngModel)]="formTitle" />
