@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_18.pdf');
+let dataBuffer = fs.readFileSync('./CV_24.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -193,18 +193,16 @@ async function processData(content) {
         "educacion",
         "academic",
         "academica",
-        "habilidades",
         "references",
         "referencias",
-        "skills",
-        "habilidades",
         "conocimientos",
         "idiomas",
         "languajes",
         "cursos",
         "work",
         "achievements",
-        "personales"
+        "personales",
+        "laboral"
     ];
 
 
