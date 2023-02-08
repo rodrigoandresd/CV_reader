@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_15.pdf');
+let dataBuffer = fs.readFileSync('./CV_6.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -25,7 +25,7 @@ async function processData(content) {
     // const tokenizer = new natural.SentenceTokenizer();
     // const sentenceTokens = tokenizer.tokenize(normalizeContent);
     console.log(tokens);
-    
+
     let consultorObj = {};
     const emailPattern = RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}/);
     let emailArray = emailPattern.exec(tokens);
@@ -70,7 +70,8 @@ async function processData(content) {
         'experiencia',
         "educativa",
         "academica",
-        "formal"
+        "formal",
+        " "
     ];
 
     let eduKeysStop = [
@@ -79,33 +80,55 @@ async function processData(content) {
         "references",
         "referencias",
         "work",
-        "laboral",
         "fields",
         "conocimientos",
         "job",
-        "technical",
+        "abilities",
         "experiencia",
     ];
     // let values = {};
-    
+
+    // for (let i = 0; i < tokens.length;) {
+    //     if (eduSectionKeys.includes(tokens[i])) {
+    //         // let currentKey = tokens[i];
+    //         let eduCurrentValue = "";
+    //         i++;
+    //         while (!eduKeysStop.includes(tokens[i])) {
+    //             eduCurrentValue += tokens[i] + " ";
+    //             i++;
+    //             if (i === tokens.length || eduKeysStop.includes(tokens[i])) {
+    //                 break;
+    //             }
+    //         }
+    //         consultorObj['consultorAcademic'] = eduCurrentValue.trim();
+    //     } else {
+    //         i++;
+    //     }
+    // }
+
+    let found = false;
     for (let i = 0; i < tokens.length;) {
         if (eduSectionKeys.includes(tokens[i]) && (eduComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
-            // let currentKey = tokens[i];
-            let eduCurrentValue = "";
-            i++;
-            while (!eduKeysStop.includes(tokens[i])) {
-                eduCurrentValue += tokens[i] + " ";
+            if (!found) {
+                let eduCurrentValue = "";
                 i++;
-                if (i === tokens.length || eduKeysStop.includes(tokens[i])) {
-                    break;
+                while (!eduKeysStop.includes(tokens[i])) {
+                    eduCurrentValue += tokens[i] + " ";
+                    i++;
+                    if (i === tokens.length || eduKeysStop.includes(tokens[i])) {
+                        break;
+                    }
                 }
+                consultorObj['consultorAcademic'] = eduCurrentValue.trim();
+                found = true;
+            } else {
+                i++;
             }
-            consultorObj['consultorAcademic'] = eduCurrentValue.trim();
         } else {
             i++;
-        }
     }
-    
+}
+
     let workSectionKeys = [
         "work",
         "laboral",
@@ -129,7 +152,7 @@ async function processData(content) {
         "referencias"
     ];
     // let values = {};
-    
+
     for (let i = 0; i < tokens.length;) {
         if (workSectionKeys.includes(tokens[i]) && (workComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
             // let currentKey = tokens[i];
@@ -172,5 +195,6 @@ async function processData(content) {
     // console.log(token_2);
     // console.log(sentece.tokenize(content));
     // console.log(tokenizer_2.tokenize(content));
+
 
 
