@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_1.pdf');
+let dataBuffer = fs.readFileSync('./CV_15.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -20,10 +20,11 @@ async function processData(content) {
     // console.log(content);
     const lowerCaseContent = content.toLowerCase();
     const normalizeContent = lowerCaseContent.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    const tokens = normalizeContent.split(/[\s\r\n]/);
+    const finalContent = normalizeContent.replace(/:/g, ' ');
+    const tokens = finalContent.split(/[\s\r\n]/).filter(token => token.trim() !== '');
     // const tokenizer = new natural.SentenceTokenizer();
     // const sentenceTokens = tokenizer.tokenize(normalizeContent);
-    // console.log(sentenceTokens);
+    console.log(tokens);
     
     let consultorObj = {};
     const emailPattern = RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}/);
@@ -57,22 +58,33 @@ async function processData(content) {
     }
 
     let eduSectionKeys = [
+        "formacion",
         "education",
-        "academic"
+        "academic",
+        "academica",
+        "estudios",
+        "instruccion",
+        "capacitacion",
     ];
     let eduComplementKeys = [
-        'experience',
+        'experiencia',
+        "educativa",
+        "academica",
+        "formal"
     ];
 
     let eduKeysStop = [
         "skills",
         "habilidades",
         "references",
+        "referencias",
         "work",
         "laboral",
         "fields",
+        "conocimientos",
         "job",
-        "technical"
+        "technical",
+        "experiencia",
     ];
     // let values = {};
     
@@ -102,15 +114,19 @@ async function processData(content) {
     ];
     let workComplementKeys = [
         'experience',
+        "experiencia",
         'of'
     ];
 
     let workKeysStop = [
         "education",
+        "educacion",
         "skills",
         "academic",
+        "academica",
         "habilidades",
-        "references"
+        "references",
+        "referencias"
     ];
     // let values = {};
     
