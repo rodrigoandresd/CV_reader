@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_6.pdf');
+let dataBuffer = fs.readFileSync('./CV_18.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -24,7 +24,7 @@ async function processData(content) {
     const tokens = finalContent.split(/[\s\r\n]/).filter(token => token.trim() !== '');
     // const tokenizer = new natural.SentenceTokenizer();
     // const sentenceTokens = tokenizer.tokenize(normalizeContent);
-    console.log(tokens);
+    // console.log(finalContent);
 
     let consultorObj = {};
     const emailPattern = RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}/);
@@ -84,32 +84,14 @@ async function processData(content) {
         "conocimientos",
         "job",
         "abilities",
-        "experiencia",
+        "idiomas",
+        "languajes"
     ];
-    // let values = {};
 
-    // for (let i = 0; i < tokens.length;) {
-    //     if (eduSectionKeys.includes(tokens[i])) {
-    //         // let currentKey = tokens[i];
-    //         let eduCurrentValue = "";
-    //         i++;
-    //         while (!eduKeysStop.includes(tokens[i])) {
-    //             eduCurrentValue += tokens[i] + " ";
-    //             i++;
-    //             if (i === tokens.length || eduKeysStop.includes(tokens[i])) {
-    //                 break;
-    //             }
-    //         }
-    //         consultorObj['consultorAcademic'] = eduCurrentValue.trim();
-    //     } else {
-    //         i++;
-    //     }
-    // }
-
-    let found = false;
+    let found_edu = false;
     for (let i = 0; i < tokens.length;) {
         if (eduSectionKeys.includes(tokens[i]) && (eduComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
-            if (!found) {
+            if (!found_edu) {
                 let eduCurrentValue = "";
                 i++;
                 while (!eduKeysStop.includes(tokens[i])) {
@@ -120,56 +102,138 @@ async function processData(content) {
                     }
                 }
                 consultorObj['consultorAcademic'] = eduCurrentValue.trim();
-                found = true;
+                found_edu = true;
             } else {
                 i++;
             }
         } else {
             i++;
+        }
     }
-}
+    if (!consultorObj.hasOwnProperty('consultorAcademic')) {
+        consultorObj['consultorAcademic'] = "Education not found";
+    }
 
     let workSectionKeys = [
         "work",
         "laboral",
         "fields",
-        "job"
+        "job",
+        "experiencia"
     ];
     let workComplementKeys = [
-        'experience',
+        "experience",
         "experiencia",
-        'of'
+        "of",
+        "profesional",
+        "laboral"
     ];
 
     let workKeysStop = [
         "education",
         "educacion",
-        "skills",
         "academic",
         "academica",
         "habilidades",
         "references",
-        "referencias"
+        "referencias",
+        "skills",
+        "habilidades",
+        "conocimientos",
+        "idiomas",
+        "languajes",
+        "cursos",
     ];
-    // let values = {};
 
+
+    let found_work = false;
     for (let i = 0; i < tokens.length;) {
-        if (workSectionKeys.includes(tokens[i]) && (workComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
-            // let currentKey = tokens[i];
-            let currentValue = "";
-            i++;
-            while (!workKeysStop.includes(tokens[i])) {
-                currentValue += tokens[i] + " ";
+        if (workSectionKeys.includes(tokens[i]) && (workComplementKeys.includes(tokens[i + 1]))) {
+            if (!found_work) {
+                let workCurrentValue = "";
                 i++;
-                if (i === tokens.length || workKeysStop.includes(tokens[i])) {
-                    break;
+                while (!workKeysStop.includes(tokens[i])) {
+                    workCurrentValue += tokens[i] + " ";
+                    i++;
+                    if (i === tokens.length || workKeysStop.includes(tokens[i])) {
+                        break;
+                    }
                 }
+                consultorObj['consultorWork'] = workCurrentValue.trim();
+                found_work = true;
+            } else {
+                i++;
             }
-            consultorObj['consultorWorkExperience'] = currentValue.trim();
         } else {
             i++;
         }
     }
+    if (!consultorObj.hasOwnProperty('consultorWork')) {
+        consultorObj['consultorWork'] = "Work experience not found";
+    }
+
+    let skillsSectionKeys = [
+        "skills",
+        "habilidades",
+        "abilities",
+        "conocimientos",
+        "competencias",
+        "lenguajes"
+    ];
+    // let skillsComplementKeys = [
+    //     "experience",
+    //     "experiencia",
+    //     "of",
+    //     "profesional",
+    //     "laboral"
+    // ];
+
+    let skillsKeysStop = [
+        "education",
+        "educacion",
+        "academic",
+        "academica",
+        "habilidades",
+        "references",
+        "referencias",
+        "skills",
+        "habilidades",
+        "conocimientos",
+        "idiomas",
+        "languajes",
+        "cursos",
+        "work",
+        "achievements",
+        "personales"
+    ];
+
+
+    let found_skills = false;
+    for (let i = 0; i < tokens.length;) {
+        if (skillsSectionKeys.includes(tokens[i]) /* && (skillsComplementKeys.includes(tokens[i + 1]))*/) {
+            if (!found_skills) {
+                let skillsCurrentValue = "";
+                i++;
+                while (!skillsKeysStop.includes(tokens[i])) {
+                    skillsCurrentValue += tokens[i] + " ";
+                    i++;
+                    if (i === tokens.length || skillsKeysStop.includes(tokens[i])) {
+                        break;
+                    }
+                }
+                consultorObj['consultorSkills'] = skillsCurrentValue.trim();
+                found_skills = true;
+            } else {
+                i++;
+            }
+        } else {
+            i++;
+        }
+    }
+    if (!consultorObj.hasOwnProperty('consultorSkills')) {
+        consultorObj['consultorSkills'] = "Skills not found";
+    }
+
     let consultorData = JSON.stringify(consultorObj);
 
     fs.writeFileSync('../../talanreader-web/src/app/demo.json', consultorData, (err) => {
