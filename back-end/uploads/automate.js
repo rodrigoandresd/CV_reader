@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_24.pdf');
+let dataBuffer = fs.readFileSync('./CV_23.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -205,10 +205,14 @@ async function processData(content) {
         "laboral"
     ];
 
+    let ignoreSkills = [
+        "soft",
+        "for",
+    ]
 
     let found_skills = false;
     for (let i = 0; i < tokens.length;) {
-        if (skillsSectionKeys.includes(tokens[i]) /* && (skillsComplementKeys.includes(tokens[i + 1]))*/) {
+        if (skillsSectionKeys.includes(tokens[i]) && (!ignoreSkills.includes(tokens[i + 1]))) {
             if (!found_skills) {
                 let skillsCurrentValue = "";
                 i++;
