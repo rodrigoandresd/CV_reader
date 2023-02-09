@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PrefilledService } from './services/prefilled.service';
 import { tap } from 'rxjs/operators';
 import { Consultor } from './interfaces/prefilled.interface';
+import { outputAst } from '@angular/compiler';
 // import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -12,7 +13,7 @@ import { Consultor } from './interfaces/prefilled.interface';
 })
 export class PrefilledComponent implements OnInit {
   consultors!: Consultor[];
-
+  @Output() saveToJsonClick = new EventEmitter<Consultor>();
   constructor(private consultorSvc: PrefilledService) { }
 
 
@@ -26,6 +27,10 @@ export class PrefilledComponent implements OnInit {
         })
       )
       .subscribe();
+  }
+  onClick(): void {
+    console.log('Click', this.consultors);
+    this.saveToJsonClick.emit(this.consultors);
   }
 }
   // consultors: Consultor[] = consultorData;

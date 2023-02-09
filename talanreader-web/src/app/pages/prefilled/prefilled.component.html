@@ -7,10 +7,13 @@
         <div class="card-content">{{ consultor.consultorWork }}</div>
         <div class="card-content">{{ consultor.consultorSkills }}</div>
     </div>
+    <div>
+        <button class="button" (click)="onClick()">Save</button>
+    </div>
 </section>
 
 
-<!-- 
+<!--
 <pre>
     {{
         consultors | json
@@ -19,7 +22,7 @@
 
 
 
-     
+
 <div class="field">
         <ul *ngFor="let consultor of consultors">
             <li>Name: <input type="text" class="input" [value]="consultor.consultorName"></li>
@@ -28,7 +31,7 @@
             <li>Education:<textarea class="textarea" placeholder="Text area" [value]="consultor.consultorAcademic"></textarea></li>
             <li>Work Experience:<textarea class="textarea" placeholder="Text area" [value]="consultor.consultorWork"></textarea></li>
             <li>Skills: <textarea class="textarea" placeholder="Text area" [value]="consultor.consultorSkills"></textarea></li>
-        </ul>   
+        </ul>
 </div>
 
 <input type="text" [(ngModel)]="formTitle" />
