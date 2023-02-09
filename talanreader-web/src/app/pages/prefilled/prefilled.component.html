@@ -8,7 +8,7 @@
         <div class="card-content">{{ consultor.consultorSkills }}</div>
     </div>
     <div>
-        <button class="button" (click)="onClick()">Save</button>
+        <button class="button" *ngFor="let consultor of consultors" (click)="onClick(consultor)">Save</button>
     </div>
 </section>
 

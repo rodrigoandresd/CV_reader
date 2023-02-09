@@ -28,9 +28,9 @@ export class PrefilledComponent implements OnInit {
       )
       .subscribe();
   }
-  onClick(): void {
-    console.log('Click', this.consultors);
-    this.saveToJsonClick.emit(this.consultors);
+  onClick(consultor: Consultor): void {
+    console.log('Click', consultor);
+    this.saveToJsonClick.emit(consultor);
   }
 }
   // consultors: Consultor[] = consultorData;
