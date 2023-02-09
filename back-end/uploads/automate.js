@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_23.pdf');
+let dataBuffer = fs.readFileSync('./CV_1.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -236,9 +236,9 @@ async function processData(content) {
         consultorObj['consultorSkills'] = "Skills not found";
     }
 
-    let consultorData = JSON.stringify(consultorObj);
+    let consultorData = JSON.stringify({"consultor": consultorObj});
 
-    fs.writeFileSync('../../talanreader-web/src/app/demo.json', consultorData, (err) => {
+    fs.writeFileSync('../../talanreader-web/server/demo.json', consultorData, (err) => {
         if (err) {
             console.log(err);
         } else {

@@ -1,14 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import consultorData from '../../demo.json';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PrefilledService } from './services/prefilled.service';
+import { tap } from 'rxjs/operators';
+import { Consultor } from './interfaces/prefilled.interface';
+// import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-interface Consultor {
-  consultorEmail: String,
-  consultorPhone: String,
-  consultorName: String,
-  consultorAcademic: String,
-  consultorWorkExperience: String,
-}
 
 @Component({
   selector: 'app-prefilled',
@@ -16,13 +11,24 @@ interface Consultor {
   styleUrls: ['./prefilled.component.scss']
 })
 export class PrefilledComponent implements OnInit {
-  formTitle = 'email: example@mail.com'
-  constructor() { }
-  consultors: Consultor[] = consultorData;
+  consultors!: Consultor[];
+
+  constructor(private consultorSvc: PrefilledService) { }
+
 
   ngOnInit(): void {
-
+    this.consultorSvc.getConsultors()
+      .pipe(
+        // tap(res => console.log(res))
+        tap((consultors: Consultor[]) => {
+          this.consultors = consultors
+          return consultors;
+        })
+      )
+      .subscribe();
   }
+}
+  // consultors: Consultor[] = consultorData;
 
 //   editarForm = new FormGroup({
 //     name: new FormControl(''),
@@ -51,4 +57,4 @@ export class PrefilledComponent implements OnInit {
 //   'telefono': this.datosPaciente.Telefono,
 //   'pacienteId': this.datosPaciente.PacienteId,
 //   'fechaNacimiento': this.datosPaciente.FechaNacimiento
-}
+
