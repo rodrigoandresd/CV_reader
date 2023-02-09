@@ -1,6 +1,8 @@
 <section class="consultors">
     <div class="consultor-div" *ngFor="let consultor of consultors">
-        <div class="card-header">{{ consultor.consultorName }}</div>
+        <div class="card-content">
+            <input type="text" [value]="consultor.consultorName" (keyup)="saveName($event)">
+        </div>
         <div class="card-content">{{ consultor.consultorEmail }}</div>
         <div class="card-content">{{ consultor.consultorPhone }}</div>
         <div class="card-content">{{ consultor.consultorAcademic }}</div>
