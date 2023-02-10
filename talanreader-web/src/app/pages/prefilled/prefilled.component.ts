@@ -31,7 +31,15 @@ export class PrefilledComponent implements OnInit {
   onClick(consultor: Consultor): void {
     console.log('Click', consultor);
     //this.saveToJsonClick.emit(consultor);
-    this.consultorSvc.postConsultor(consultor);
+    this.consultorSvc.postConsultor(consultor).subscribe(data => {
+      console.log(data);
+    });
+  //   const data = JSON.stringify(this.consultors);
+  //   const blob = new Blob([data], {type: 'application/json'});
+  //   const link = document.createElement('a');
+  //   link.href = window.URL.createObjectURL(blob);
+  //   link.download = './consultors.json';
+  //   link.click();
   }
 
   saveName(event: Event): void {

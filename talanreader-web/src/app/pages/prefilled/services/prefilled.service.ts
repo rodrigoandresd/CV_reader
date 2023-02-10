@@ -1,7 +1,14 @@
 import { Consultor } from './../interfaces/prefilled.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +22,8 @@ export class PrefilledService {
   }
 
   postConsultor(consultor: Consultor):Observable<Consultor[]>{
-    return this.http.put<Consultor[]>(this.apiURL, consultor);
+    const url = '${this.apiURL}/${consultor.id}';
+    return this.http.put<Consultor[]>(url, consultor, httpOptions);
   }
 
 }
