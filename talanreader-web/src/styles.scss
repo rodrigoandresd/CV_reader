@@ -1,1 +1,9 @@
+// Bulma import and customization
+$family-primary: Montserrat, sans-serif;
+
 @import "node_modules/bulma/bulma.sass";
+
+
+.ag-theme-alpine {
+  --ag-font-family: $family-primary;
+}

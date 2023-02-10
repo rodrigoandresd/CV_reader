@@ -1,0 +1,17 @@
+$purple: rgb(237, 234, 255) rgb(211, 202, 255) rgb(181, 167, 255) rgb(151, 131, 255) rgb(129, 105, 255) rgb(107, 78, 255) rgb(99, 71, 255)
+  rgb(88, 61, 255) rgb(78, 53, 255) rgb(60, 37, 255) rgb(255, 255, 255) rgb(255, 255, 255) rgb(215, 211, 255) rgb(192, 185, 255);
+
+$purple-50: nth($purple, 1);
+$purple-100: nth($purple, 2);
+$purple-200: nth($purple, 3);
+$purple-300: nth($purple, 4);
+$purple-400: nth($purple, 5);
+$purple-500: nth($purple, 6);
+$purple-600: nth($purple, 7);
+$purple-700: nth($purple, 8);
+$purple-800: nth($purple, 9);
+$purple-900: nth($purple, 10);
+$purple-A100: nth($purple, 11);
+$purple-A200: nth($purple, 12);
+$purple-A400: nth($purple, 13);
+$purple-A700: nth($purple, 14);
