@@ -1,13 +1,13 @@
 {
-    "consultor": [
-        {
-            "id": 1,
-            "consultorEmail": "No email found",
-            "consultorPhone": "No phone found",
-            "consultorName": "No name found",
-            "consultorAcademic": "system engineer 2009-2014 received my systems engineer degree on the santa maria university in venezuela.",
-            "consultorWork": "experience software developer ii 2021 working for prisma medios de pago in the migration of an old system from outdated tech to the more current and safer technologies. i have the opportunity to work with skilled programmers and develop solutions that will help the business to grow and provide better solutions for customers. main stack java 11, mysql, react, mongodb application developer 2018-2021 worked on clover argentina on the first smart pos in the region; developing, maintaining and adapting both backend and frontend to adjust to local market and business necessities working side by side with usa team to ensure best practices via code review. main stack java 8, mysql, emberjs, javascript, react programmer analyst 2017-2018 took part of many projects for the consulting company cda, developing and helping team to reach business goals for every one of these. main stack java 8, spring mvc, hibernate, jasper, pl/sql, angularjs, js, tomcat fullstack developer 2015-2017 working remotely for a mexican startup called menonitapp, mostly taking small projects on solo or duo with another developer, managing to create all sorts of things from web to backend. main stack java 6, php, mysql, js, html/css, bootstrap, jquery",
-            "consultorSkills": "• java 6 to 11 experience • knowledge on php, react, angular, mysql • experience with springboot • gradle & maven • agile & scrum • advanced english"
-        }
-    ]
+  "consultor": [
+    {
+      "id": 1,
+      "consultorEmail": "ejemplo@sisi.com",
+      "consultorPhone": "52525525",
+      "consultorName": "Andrez Lopez",
+      "consultorAcademic": "system engineer 2009-2014 received my systems engineer degree on the santa maria university in venezuela.",
+      "consultorWork": "nada",
+      "consultorSkills": "• java 6 to 11 experience • knowledge on php, react, angular, mysql • experience with springboot • gradle & maven • agile & scrum • advanced english"
+    }
+  ]
 }

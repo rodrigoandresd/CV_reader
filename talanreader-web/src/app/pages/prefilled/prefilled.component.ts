@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PrefilledService } from './services/prefilled.service';
 import { tap } from 'rxjs/operators';
 import { Consultor } from './interfaces/prefilled.interface';
+import * as jsPDF from 'jspdf';
 
 // import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -61,43 +62,29 @@ export class PrefilledComponent implements OnInit {
     const skills = event.target as HTMLInputElement;
     this.consultors[0].consultorSkills = skills.value;
   }
+
+  downloadPDF() {
+    if (this.consultors && this.consultors.length > 0) {
+      const consultor = this.consultors[0];
+      const doc = new jsPDF.jsPDF();
+
+      doc.setFont("times");
+      doc.setFont("helvetica");
+      doc.setFontSize(16);
+      doc.text(`Hoja de vida de ${consultor.consultorName}`, 10, 10);
+      doc.setFontSize(12);
+      doc.text(`Nombre: ${consultor.consultorName}`, 10, 20);
+      doc.text(`Email: ${consultor.consultorEmail}`, 10, 30);
+      doc.text(`Teléfono: ${consultor.consultorPhone}`, 10, 40);
+      doc.text(`Formación Académica: ${consultor.consultorAcademic}`, 10, 50);
+      doc.text(`Experiencia Laboral: ${consultor.consultorWork}`, 10, 60);
+      doc.text(`Habilidades: ${consultor.consultorSkills}`, 10, 70);
+
+      doc.save(`Hoja de vida de ${consultor.consultorName}.pdf`);
+    } else {
+      console.error('No hay consultores disponibles para descargar en PDF.');
+    }
+  }
+
 }
-
-
-  //   const data = JSON.stringify(this.consultors);
-  //   const blob = new Blob([data], {type: 'application/json'});
-  //   const link = document.createElement('a');
-  //   link.href = window.URL.createObjectURL(blob);
-  //   link.download = './consultors.json';
-  //   link.click();
-
-  // consultors: Consultor[] = consultorData;
-
-//   editarForm = new FormGroup({
-//     name: new FormControl(''),
-//     email: new FormControl(''),
-//     phone: new FormControl(''),
-//     skills: new FormControl(''),
-//     education: new FormControl(''),
-//     experience: new FormControl('')
-//   })
-
-//   ngOnInit(): void {
-//     let consultor = this.activerouter.snapshot.paramMap.get('id');
-//     let token = this.getToken();
-
-// this.api.getSinglePacient(paciteid).subscribe(data => {
-
-// this.datosPaciente = data[0];
-
-// this.editarForm.setValue({
-//   'nombre': this.datosPaciente.Nombre,
-//   'correo': this.datosPaciente.Correo,
-//   'dni': this.datosPaciente.DNI,
-//   'direccion': this.datosPaciente.Direccion,
-//   'codigostal': this.datosPaciente.CodigoPostal,
-//   'genero': this.datosPaciente.Genero,
-//   'telefono': this.datosPaciente.Telefono,
-//   'pacienteId': this.datosPaciente.PacienteId,
-//   'fechaNacimiento': this.datosPaciente.FechaNacimiento
 
