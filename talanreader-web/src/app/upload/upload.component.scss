@@ -33,13 +33,21 @@ h1 {
         cursor: pointer;
     }
 
-    button {
-        padding: 10px 20px;
-        background-color: blue;
-        color: white;
-        border-radius: 5px;
-        border: none;
-        cursor: pointer;
-        margin-top: 20px;
-    }
 }
+
+button.button {
+    margin-top: 30px;
+    background-color: dodgerblue;
+    color: white;
+    padding: 1em 1.5em;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+    }
+  }
