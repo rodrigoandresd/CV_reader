@@ -31,22 +31,25 @@ export class PrefilledComponent implements OnInit {
   onClick(consultor: Consultor): void {
     console.log('Click', consultor);
     //this.saveToJsonClick.emit(consultor);
-    this.consultorSvc.postConsultor(consultor).subscribe(data => {
-      console.log(data);
-    });
+    this.consultorSvc
+      .putConsultor(consultor)
+      .subscribe(() => {this.consultors = this.consultors.filter(c => c.id != consultor.id)});
+      this.saveToJsonClick.emit(consultor);
+  }
+  saveName(event: Event): void {
+    const name = event.target as HTMLInputElement;
+    this.consultors[0].consultorName = name.value;
+  }
+}
+
+
   //   const data = JSON.stringify(this.consultors);
   //   const blob = new Blob([data], {type: 'application/json'});
   //   const link = document.createElement('a');
   //   link.href = window.URL.createObjectURL(blob);
   //   link.download = './consultors.json';
   //   link.click();
-  }
 
-  saveName(event: Event): void {
-    const name = event.target as HTMLInputElement;
-    this.consultors[0].consultorName = name.value;
-  }
-}
   // consultors: Consultor[] = consultorData;
 
 //   editarForm = new FormGroup({

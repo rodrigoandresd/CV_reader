@@ -21,9 +21,9 @@ export class PrefilledService {
     return this.http.get<Consultor[]>(this.apiURL)
   }
 
-  postConsultor(consultor: Consultor):Observable<Consultor[]>{
-    const url = '${this.apiURL}/${consultor.id}';
-    return this.http.put<Consultor[]>(url, consultor, httpOptions);
+  putConsultor(consultor: Consultor):Observable<Consultor[]>{
+//
+    const apiURLput = `${this.apiURL}/${consultor.id}`
+    return this.http.put<Consultor[]>(apiURLput, consultor, httpOptions);
   }
-
 }
