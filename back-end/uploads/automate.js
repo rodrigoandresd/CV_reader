@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_12.pdf');
+let dataBuffer = fs.readFileSync('./CV_1.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
@@ -27,6 +27,8 @@ async function processData(content) {
     // console.log(finalContent);
 
     let consultorObj = {};
+
+    consultorObj['id'] = 1;
     const emailPattern = RegExp(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}/);
     let emailArray = emailPattern.exec(tokens);
     if (emailArray) {

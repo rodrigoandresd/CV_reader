@@ -1,13 +1,13 @@
 {
   "consultor": [
     {
-      "id": 1,
-      "consultorEmail": "rualesoraya@gmail.com",
-      "consultorPhone": "1792087813001",
-      "consultorName": "No name found",
-      "consultorAcademic": "realizados primaria escuela angel de la guarda secundaria colegio sagrados corazones “centro” bachiller ciencias basicas universitarios universidad politecnica salesiana carrera ingenieria civil (quinto nivel - aprobado) iii. cursos recibidos  secap - auxiliar tecnico en computacion  condor – centro de capacitacion decoracion y texturizacion en manposteria iv. experencia laboral - cabinas telefonicas movistar atencion al cliente tiempo 1 ano - billares y muebles “villarreal e hijos” atencion al cliente ventas tiempo 1 ano - grafitex cia. ltda recepcionista asistente administrativa atencion al cliente manejo del portal de compras publicas recepcion de llamadas internas y externas envio y recepcion de correspondencia interna y externa. tiempo 6 meses - c y t de los andes dibujante – encargada de tsslevantamientos topograficos para ubicar radio bases celulares sobre terreno, terrazas. tiempo 6 meses - fundacion ciclopolis asistente administrativa atencion al cliente recepcion de llamadas envio y recepcion de correspondencia interna y externa. recepcion de facturas y emision de retenciones. elaboracion de roles manejo de la pagina del ministerio de trabajo – sut ingreso de facturas al sistema fenix manejo de archivo fisico y digital. elaboracion de cheques. manejo de caja chica tiempo noviembre 2013 noviembre 2018. v.",
-      "consultorWork": "Work experience not found",
-      "consultorSkills": "Skills not found"
+      "id": "CV_1",
+      "consultorEmail": "ex@gmail.com",
+      "consultorPhone": "5555",
+      "consultorName": "pedro",
+      "consultorAcademic": "hola mundo",
+      "consultorWork": "jfjfj",
+      "consultorSkills": "bueno ahora si "
     }
   ]
 }

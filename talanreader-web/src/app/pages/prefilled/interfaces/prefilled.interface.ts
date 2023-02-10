@@ -1,5 +1,5 @@
 export interface Consultor {
-    id: number,
+    id: any,
     consultorEmail: String,
     consultorPhone: String,
     consultorName: String,

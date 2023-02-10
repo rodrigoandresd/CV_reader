@@ -36,9 +36,30 @@ export class PrefilledComponent implements OnInit {
       .subscribe(() => {this.consultors = this.consultors.filter(c => c.id != consultor.id)});
       this.saveToJsonClick.emit(consultor);
   }
+
   saveName(event: Event): void {
     const name = event.target as HTMLInputElement;
     this.consultors[0].consultorName = name.value;
+  }
+  saveEmail(event: Event): void {
+    const email = event.target as HTMLInputElement;
+    this.consultors[0].consultorEmail = email.value;
+  }
+  savePhone(event: Event): void {
+    const phone = event.target as HTMLInputElement;
+    this.consultors[0].consultorPhone = phone.value;
+  }
+  saveAcademic(event: Event): void {
+    const academic = event.target as HTMLInputElement;
+    this.consultors[0].consultorAcademic = academic.value;
+  }
+  saveWork(event: Event): void {
+    const work = event.target as HTMLInputElement;
+    this.consultors[0].consultorWork = work.value;
+  }
+  saveSkills(event: Event): void {
+    const skills = event.target as HTMLInputElement;
+    this.consultors[0].consultorSkills = skills.value;
   }
 }
 

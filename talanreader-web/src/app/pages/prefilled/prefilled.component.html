@@ -1,16 +1,41 @@
 <section class="consultors">
     <div class="consultor-div" *ngFor="let consultor of consultors">
+        <h1> Name </h1>
         <div class="card-content">
             <input type="text" [value]="consultor.consultorName" (keyup)="saveName($event)">
         </div>
-        <div class="card-content">{{ consultor.consultorEmail }}</div>
-        <div class="card-content">{{ consultor.consultorPhone }}</div>
-        <div class="card-content">{{ consultor.consultorAcademic }}</div>
-        <div class="card-content">{{ consultor.consultorWork }}</div>
-        <div class="card-content">{{ consultor.consultorSkills }}</div>
-    </div>
-    <div>
-        <button class="button" *ngFor="let consultor of consultors" (click)="onClick(consultor)">Save</button>
+
+        <h1> Email </h1>
+        <div class="card-content">
+            <input type="text" [value]="consultor.consultorEmail" (keyup)="saveEmail($event)">
+        </div>
+
+        <h1> Phone </h1>
+        <div class="card-content">
+            <input type="text" [value]="consultor.consultorPhone" (keyup)="savePhone($event)">
+        </div>
+
+        <h1> Academic Experience </h1>
+        <div class="control">
+            <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorAcademic"
+                (keyup)="saveAcademic($event)"></textarea>
+        </div>
+
+        <h1> Work Experience </h1>
+            <div class="control">
+                <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorWork"
+                    (keyup)="saveWork($event)"></textarea>
+        </div>
+
+        <h1> Employee Skills </h1>
+        <div class="control">
+            <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorSkills"
+                (keyup)="saveSkills($event)"></textarea>
+        </div>
+
+        <div>
+            <button class="button" *ngFor="let consultor of consultors" (click)="onClick(consultor)">Save</button>
+        </div>
     </div>
 </section>
 
