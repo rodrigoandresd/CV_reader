@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { createConsultor, uploadFile } from './controller.js';
 import { reader } from '../uploads/automate.js';
+import fs from 'fs';
 
 export const consultorRouter = Router();
 
@@ -36,5 +37,11 @@ consultorRouter.post('/upload', uploadFile.single('myFile'), async function(requ
     console.log(request.file);
     reader(`./uploads/${request.file.originalname}`);
     console.log('File uploaded at backend');
+    fs.unlink(`./uploads/${request.file.originalname}`, (err) => {
+        if (err) {
+            throw err;
+        }
+        console.log('File deleted at network')
+    })
 });
 
