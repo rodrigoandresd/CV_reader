@@ -37,6 +37,7 @@ export class PrefilledComponent implements OnInit {
       .putConsultor(consultor)
       .subscribe(() => {this.consultors = this.consultors.filter(c => c.id != consultor.id)});
       this.saveToJsonClick.emit(consultor);
+      window.location.reload();
   }
 
   saveName(event: Event): void {
@@ -74,21 +75,17 @@ export class PrefilledComponent implements OnInit {
         startY: 50,
         head: [['Título', 'Valor']],
         body: [
-            ['Nombre', `${consultor.consultorName}`],
+            ['Name', `${consultor.consultorName}`],
             ['Email', `${consultor.consultorEmail}`],
-            ['Teléfono', `${consultor.consultorPhone}`],
-            ['Formación Académica', `${consultor.consultorAcademic}`],
-            ['Experiencia Laboral', `${consultor.consultorWork}`],
-            ['Habilidades', `${consultor.consultorSkills}`],
+            ['Phone', `${consultor.consultorPhone}`],
+            ['Academic Experience', `${consultor.consultorAcademic}`],
+            ['Work Experience', `${consultor.consultorWork}`],
+            ['Skills', `${consultor.consultorSkills}`],
         ],
       });
-
-
-      doc.save(`Hoja de vida de ${consultor.consultorName}.pdf`);
+      doc.save(`curriculum_vitae_of_${consultor.consultorName}.pdf`);
     } else {
-      console.error('No hay consultores disponibles para descargar en PDF.');
+      console.error('There are no consultants available to download in PDF.');
     }
   }
-
 }
-
