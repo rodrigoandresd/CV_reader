@@ -34,6 +34,8 @@ export class UploadComponent{
     this.restService.sendPost(body)
     .subscribe(res => console.log(res))
     this.restService.sendPost(body)
-    this.router.navigate(['/form']);
+    this.router.navigate(['/form']).then(() => {
+      window.location.reload();
+    });
   }
 }

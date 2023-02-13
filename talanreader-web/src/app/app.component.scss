@@ -15,7 +15,7 @@
 @include tablet {
   .decoration {
     display: initial;
-    background-image: linear-gradient(hsla(0, 0%, 100%, 0.8), transparent), url("/assets/img/form-bg.jpg");
+    background-image: linear-gradient(hsla(0, 0%, 100%, 0.8), transparent);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
