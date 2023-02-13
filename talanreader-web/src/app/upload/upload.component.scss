@@ -4,7 +4,14 @@
   text-align: center;
   margin-top: 40px;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 30px;
+  color: #081c3d;
+}
+
+.little_title {
+  text-align: center;
+  margin-top: 0px;
+  font-size: 10px;
   color: #081c3d;
 }
 
@@ -12,6 +19,13 @@ h1 {
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 0.5em;
+}
+
+input {
+  font-size: 1em;
+  font-weight: bold;
+  margin-bottom: 2em;
+  color: #081c3d;
 }
 
 .upload-container {
@@ -36,13 +50,13 @@ h1 {
 }
 
 button.button {
-    margin-top: 30px;
+    margin-top: 10px;
     background-color: dodgerblue;
     color: white;
     padding: 1em 1.5em;
-    border-radius: 0.5em;
+    border-radius: 1em;
     box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
-    font-size: 1em;
+    font-size: 1.5em;
     cursor: pointer;
     transition: all 0.15s ease-in-out;
 
