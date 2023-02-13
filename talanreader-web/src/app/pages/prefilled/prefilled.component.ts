@@ -37,6 +37,7 @@ export class PrefilledComponent implements OnInit {
       .putConsultor(consultor)
       .subscribe(() => {this.consultors = this.consultors.filter(c => c.id != consultor.id)});
       this.saveToJsonClick.emit(consultor);
+      window.alert('Recording done successfully');
       window.location.reload();
   }
 
