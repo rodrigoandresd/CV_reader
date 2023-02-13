@@ -11,6 +11,6 @@ export class RestService {
   }
 
   sendPost(body:FormData):Observable<any>{
-    return this.http.post(`http://localhost:3000/api/consultor/upload`, body)
-  }
-}
+    return this.http.post(`http://localhost:3001/api/consultor/upload`, body)
+  };
+};

@@ -5,14 +5,17 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_1.pdf');
+function reader (filePath) {
 
-pdf(dataBuffer).then(function (data) {
-    const content = data.text;
-    processData(content);
-}).catch(e => {
-    console.log(e);
-});
+    let dataBuffer = fs.readFileSync(filePath);
+
+    pdf(dataBuffer).then(function (data) {
+        const content = data.text;
+        processData(content);
+    }).catch(e => {
+        console.log(e);
+    });
+};
 
 
 async function processData(content) {
@@ -240,15 +243,17 @@ async function processData(content) {
 
     let consultorData = JSON.stringify({"consultor": [consultorObj]});
 
-    fs.writeFileSync('../../talanreader-web/server/demo.json', consultorData, (err) => {
+    fs.writeFile('../talanreader-web/server/demo.json', consultorData, (err) => {
         if (err) {
             console.log(err);
         } else {
             console.log('file created');
         }
-});
+    });
     console.log(consultorObj);
 };
+
+export { reader };
 
 
     // const tokenizer = new natural.WordTokenizer();

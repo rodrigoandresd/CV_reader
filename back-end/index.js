@@ -18,5 +18,5 @@ app.use(express.json());
 //routers
 app.use('/api/consultor', consultorRouter);
 
-app.listen(3000);
-console.log('The app is listening at http://localhost:3000')
+app.listen(3001);
+console.log('The app is listening at http://localhost:3001')
