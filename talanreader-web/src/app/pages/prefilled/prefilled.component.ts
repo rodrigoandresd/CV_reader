@@ -69,9 +69,9 @@ export class PrefilledComponent implements OnInit {
       const consultor = this.consultors[0];
       const doc = new jsPDF.jsPDF();
       const imgData = '../assets/img/talan_logo.png';
-      doc.addImage(imgData, 'JPG', 20, 90, 90, 90);
-      doc.text(" ", 20, 150);
+      doc.addImage(imgData, 'PNG', 80, 10, 40, 30);
       autoTable(doc, {
+        startY: 50,
         head: [['Título', 'Valor']],
         body: [
             ['Nombre', `${consultor.consultorName}`],
