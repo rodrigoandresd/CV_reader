@@ -19,6 +19,10 @@ export class UploadComponent{
   getFile($event: any): void {
     //TODO esto captura el archivo!
     const [ file ] = $event.target.files;
+    if (file.type !== 'application/pdf') {
+      alert('Please, select a PDF file.');
+      return;
+    }
     this.fileTmp = {
       fileRaw:file,
       fileName:file.name
