@@ -1,6 +1,7 @@
 import { RestService } from '../rest.service';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-upload',
@@ -11,7 +12,7 @@ export class UploadComponent{
 
   private fileTmp:any;
 
-  constructor(private restService: RestService){ //TODO estoy inyect
+  constructor(private restService: RestService, private router: Router){ //TODO estoy inyect
 
   }
 
@@ -32,5 +33,7 @@ export class UploadComponent{
 
     this.restService.sendPost(body)
     .subscribe(res => console.log(res))
+    this.restService.sendPost(body)
+    this.router.navigate(['/form']);
   }
 }

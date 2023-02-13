@@ -3,6 +3,7 @@ import { PrefilledService } from './services/prefilled.service';
 import { tap } from 'rxjs/operators';
 import { Consultor } from './interfaces/prefilled.interface';
 import * as jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 // import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -67,18 +68,21 @@ export class PrefilledComponent implements OnInit {
     if (this.consultors && this.consultors.length > 0) {
       const consultor = this.consultors[0];
       const doc = new jsPDF.jsPDF();
+      const imgData = '../assets/img/talan_logo.png';
+      doc.addImage(imgData, 'JPG', 20, 90, 90, 90);
+      doc.text(" ", 20, 150);
+      autoTable(doc, {
+        head: [['Título', 'Valor']],
+        body: [
+            ['Nombre', `${consultor.consultorName}`],
+            ['Email', `${consultor.consultorEmail}`],
+            ['Teléfono', `${consultor.consultorPhone}`],
+            ['Formación Académica', `${consultor.consultorAcademic}`],
+            ['Experiencia Laboral', `${consultor.consultorWork}`],
+            ['Habilidades', `${consultor.consultorSkills}`],
+        ],
+      });
 
-      doc.setFont("times");
-      doc.setFont("helvetica");
-      doc.setFontSize(16);
-      doc.text(`Hoja de vida de ${consultor.consultorName}`, 10, 10);
-      doc.setFontSize(12);
-      doc.text(`Nombre: ${consultor.consultorName}`, 10, 20);
-      doc.text(`Email: ${consultor.consultorEmail}`, 10, 30);
-      doc.text(`Teléfono: ${consultor.consultorPhone}`, 10, 40);
-      doc.text(`Formación Académica: ${consultor.consultorAcademic}`, 10, 50);
-      doc.text(`Experiencia Laboral: ${consultor.consultorWork}`, 10, 60);
-      doc.text(`Habilidades: ${consultor.consultorSkills}`, 10, 70);
 
       doc.save(`Hoja de vida de ${consultor.consultorName}.pdf`);
     } else {

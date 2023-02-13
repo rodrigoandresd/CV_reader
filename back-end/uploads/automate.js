@@ -5,7 +5,7 @@ import sw from 'remove-stopwords';
 
 
 
-let dataBuffer = fs.readFileSync('./CV_10.pdf');
+let dataBuffer = fs.readFileSync('./CV_1.pdf');
 
 pdf(dataBuffer).then(function (data) {
     const content = data.text;
