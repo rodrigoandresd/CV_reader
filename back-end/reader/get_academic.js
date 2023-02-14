@@ -1,6 +1,14 @@
+
+// Extracts the academic section from the resume content and adds it to the consultorObj object.
+// @param {Object} consultorObj - The object containing the resume data for the consultant.
+//  * @param {Array} tokens - An array of strings obtained from parsing the resume content.
+//  * @returns {Object} - The updated object containing the academic data.
+
+
 function getAcademic (consultorObj, tokens) {
 
-    let eduSectionKeys = [
+    // Define academic section keys to look for in the token array
+    const eduSectionKeys = [
         "formacion",
         "education",
         "academic",
@@ -9,7 +17,9 @@ function getAcademic (consultorObj, tokens) {
         "instruccion",
         "capacitacion",
     ];
-    let eduComplementKeys = [
+
+    // Define academic section complement keys
+    const eduComplementKeys = [
         'experiencia',
         "educativa",
         "academica",
@@ -17,7 +27,8 @@ function getAcademic (consultorObj, tokens) {
         " "
     ];
 
-    let eduKeysStop = [
+    // Define stop keys to stop searching for academic information
+    const eduKeysStop = [
         "skills",
         "habilidades",
         "references",
@@ -31,6 +42,7 @@ function getAcademic (consultorObj, tokens) {
         "languajes"
     ];
 
+    // Iterate over the token array and look for the academic section
     let found_edu = false;
     for (let i = 0; i < tokens.length;) {
         if (eduSectionKeys.includes(tokens[i]) && (eduComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
@@ -53,6 +65,8 @@ function getAcademic (consultorObj, tokens) {
             i++;
         }
     }
+
+    // If academic information is not found, set a default value
     if (!consultorObj.hasOwnProperty('consultorAcademic')) {
         consultorObj['consultorAcademic'] = "Education not found";
     }
