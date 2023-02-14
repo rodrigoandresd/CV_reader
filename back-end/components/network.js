@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { createConsultor, uploadFile } from './controller.js';
-import { reader } from '../uploads/automate.js';
+import { uploadFile } from './controller.js';
+import { reader } from '../reader/automate.js';
 import fs from 'fs';
 
 export const consultorRouter = Router();
@@ -15,28 +15,10 @@ consultorRouter.get('/', function(request, response) {
     }
 });
 
-consultorRouter.post('/', function(request, response) {
-    
-    const name = request.body.name;
-    const email = request.body.email;
-    const skills = request.body.skills;
-    const position = request.body.position;
-
-    createConsultor(name, email, skills, position)
-        .then(() => {
-            response.send('Consultor created at net work');
-        })
-        .catch(error => {
-            response.send(error);
-            console.log(error);
-        });
-});
-
-
 consultorRouter.post('/upload', uploadFile.single('myFile'), async function(request, response) {
     console.log(request.file);
     reader(`./uploads/${request.file.originalname}`);
-    console.log('File uploaded at backend');
+    console.log('File uploaded at network');
     fs.unlink(`./uploads/${request.file.originalname}`, (err) => {
         if (err) {
             throw err;

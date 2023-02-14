@@ -1,5 +1,6 @@
 // import fs from "fs";
 // import pdf from 'pdf-parse';
+import assert from 'assert';
 import { reader } from '../uploads/automate.js';
 
 describe('Test reader function', function () {
