@@ -25,5 +25,8 @@
     "nodemon": "^2.0.20",
     "pdf-parse": "^1.1.1",
     "remove-stopwords": "^1.0.3"
+  },
+  "devDependencies": {
+    "jest": "^29.4.2"
   }
 }
