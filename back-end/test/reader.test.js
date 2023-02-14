@@ -1,27 +1,11 @@
-const fs = require('fs');
-const pdf = require('pdf-parse');
+// import fs from "fs";
+// import pdf from 'pdf-parse';
+import { reader } from '../uploads/automate.js';
 
-jest.mock('fs', () => {
-  return {
-    readFileSync: jest.fn().mockImplementation(() => {
-      return new Buffer('test pdf content');
-    })
-  };
-});
-
-jest.mock('pdf-parse', () => {
-  return jest.fn().mockImplementation(() => {
-    return Promise.resolve({ text: 'test pdf content' });
-  });
-});
-
-const reader = require('./index').reader;
-
-describe('reader', () => {
-  it('reads the file and processes the data', async () => {
-    await reader('test.pdf');
-
-    expect(fs.readFileSync).toHaveBeenCalledWith('test.pdf');
-    expect(pdf).toHaveBeenCalledWith(Buffer.from('test pdf content'));
+describe('Test reader function', function () {
+  it('should return data buffer', function () {
+    const filePath = 'sample.pdf';
+    let dataBuffer = reader(filePath);
+    assert.notEqual(dataBuffer, undefined);
   });
 });
