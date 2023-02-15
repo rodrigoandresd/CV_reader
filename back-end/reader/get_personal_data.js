@@ -98,14 +98,21 @@ function getEmail(consultorObj, tokens) {
 
 function getPhone(consultorObj, tokens) {
 
-    const phonePattern = RegExp(/[\+\(]?\d{2,3}\)?[\s-\.]*\d{3}[\s-\.]*\d{4}[\s-\.]*\d{3}/g);
+    const phonePattern = /[\+\(]?\d{2,3}\)?[\s-\.]*\d{3}[\s-\.]*\d{4}[\s-\.]*\d{3}/g;
     let phoneArray = phonePattern.exec(tokens);
     if (phoneArray) {
         const consultorPhone = phoneArray[0];
         consultorObj['consultorPhone'] = consultorPhone;
     } else {
-        consultorObj['consultorPhone'] = 'No phone found';
-    };
+        const eightDigitsPattern = /\d{8}/g;
+        let eightDigitsArray = eightDigitsPattern.exec(tokens);
+        if (eightDigitsArray) {
+            const consultorPhone = eightDigitsArray[0];
+            consultorObj['consultorPhone'] = consultorPhone;
+        } else {
+            consultorObj['consultorPhone'] = 'No phone found';
+        }
+    }
 
     return consultorObj;
 };
