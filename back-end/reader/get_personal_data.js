@@ -8,13 +8,10 @@ function getName(consultorObj, tokens) {
 
     const nameSectionKeys = [
         "nombre",
+        "nombres",
         "name",
+        "names",
         "candidato",
-    ];
-
-    // Define name section complement keys
-    const nameComplementKeys = [
-        " "
     ];
 
     // Define stop keys to stop searching for other information
@@ -35,17 +32,18 @@ function getName(consultorObj, tokens) {
     ];
 
     let found_name = false;
-    for (let i = 0; i < tokens.length && i < 4;) {
-        if (nameSectionKeys.includes(tokens[i]) && (nameComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
+    for (let i = 0; i < tokens.length;) {
+        if (nameSectionKeys.includes(tokens[i])) {
             if (!found_name) {
+                // If the keywords are found and work experience has not been added yet, extract the work experience value and add it to the consultant object.
                 let nameCurrentValue = "";
                 i++;
-                let count = 0;
+                let count = 0;  // Add a count variable to keep track of the number of tokens
                 while (!nameKeysStop.includes(tokens[i])) {
                     nameCurrentValue += tokens[i] + " ";
                     i++;
-                    count++;
-                    if (i === tokens.length || nameKeysStop.includes(tokens[i])) {
+                    count++;  // Increment the count variable
+                    if (count >= 4 || i === tokens.length || nameKeysStop.includes(tokens[i])) {  // Stop the loop when count >= 4
                         break;
                     }
                 }
@@ -58,18 +56,21 @@ function getName(consultorObj, tokens) {
             i++;
         }
     }
-    if (!consultorObj.hasOwnProperty('consultorName')) {
-        const namePattern = RegExp(/\b[a-z]+\s[a-z]+?\s[a-z]+?\s[a-z]+\b/);
-        let nameArray = namePattern.exec(tokens);
-        if (nameArray) {
-            const consultorName = nameArray[0];
-            consultorObj['consultorName'] = consultorName;
-        } else {
-            consultorObj['consultorName'] = 'No name found';
+    // If no name section was found, add the first four tokens to the consultant object.
+    if (!found_name) {
+        let nameCurrentValue = "";
+        for (let i = 0; i < 4 && i < tokens.length; i++) {
+            nameCurrentValue += tokens[i] + " ";
         }
+        consultorObj['consultorName'] = nameCurrentValue.trim();
     }
+    // If no work experience was found, add a default message to the consultant object.
+    if (!consultorObj.hasOwnProperty('consultorName')) {
+        consultorObj['consultorName'] = "Name not found";
+    }
+
     return consultorObj;
-}
+};
 
 // Extracts the email of the consultant from the given tokens using a regular expression.
 //  * @param {object} consultorObj - Object containing the consultant's data.
