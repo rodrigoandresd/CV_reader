@@ -5,41 +5,49 @@
 <section class="consultors">
     <div class="consultor-div" *ngFor="let consultor of consultors">
         <h1> Name </h1>
+         <!-- This input field displays the consultant's name and saves changes to it. -->
         <div class="card-content">
             <input type="text" [value]="consultor.consultorName" (keyup)="saveName($event)">
         </div>
 
         <h1> Email </h1>
+         <!-- This input field displays the consultant's email and saves changes to it. -->
         <div class="card-content">
             <input type="text" [value]="consultor.consultorEmail" (keyup)="saveEmail($event)">
         </div>
 
         <h1> Phone </h1>
+         <!-- This input field displays the consultant's phone number and saves changes to it. -->
         <div class="card-content">
             <input type="text" [value]="consultor.consultorPhone" (keyup)="savePhone($event)">
         </div>
 
         <h1> Academic Experience </h1>
+         <!-- This text area displays the consultant's academic experience and saves changes to it. -->
         <div class="control">
             <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorAcademic"
                 (keyup)="saveAcademic($event)"></textarea>
         </div>
 
         <h1> Work Experience </h1>
+         <!-- This text area displays the consultant's work experience and saves changes to it. -->
             <div class="control">
                 <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorWork"
                     (keyup)="saveWork($event)"></textarea>
         </div>
 
         <h1> Employee Skills </h1>
+        <!-- This text area displays the consultant's skills and saves changes to it. -->
         <div class="control">
             <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorSkills"
                 (keyup)="saveSkills($event)"></textarea>
         </div>
 
+        <!-- This button saves the changes made to a consultant's information. -->
         <div>
             <button class="button" *ngFor="let consultor of consultors" (click)="onClick(consultor)">Save</button>
         </div>
+        <!-- This button downloads the consultant's CV as a PDF file. -->
         <div>
             <button class="button" (click)="downloadPDF()">Download PDF</button>
         </div>
