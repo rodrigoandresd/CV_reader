@@ -4,10 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serverAPI": "json-server --watch server/demo.json --port 3000"
+    "serverAPI": "json-server --watch server/demo.json --port 3000",
+    "build": "webpack --mode production",
+    "builddev": "webpack --mode development"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,8 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
-    "typescript": "~4.7.2"
+    "typescript": "~4.7.2",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   }
 }
