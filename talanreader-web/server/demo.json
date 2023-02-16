@@ -2,21 +2,17 @@
   "consultor": [
     {
       "id": 1,
-      "consultorName": "jairo emilio bautista mora",
+      "consultorName": "name ",
       "consultorEmail": "j.bautista.m13@outlook.com",
       "consultorPhone": "+573058183011",
       "consultorAcademic": "experience 01/2018 – 06/2018 & 07/2019 - 12/2019 universidad de los andes teach & research assistant i investigate vulnerability detection techniques in source code and perform a mapping study on security vulnerabilities in the linux kernel. as a teaching assistant, i dictated the computer infrastructure laboratory, a course about operative systems, security and multithreading. 08/2017 – 12/2017 universidad de los andes algorithm design and analysis monitor preparation of review classes with the topics covered by the exams. topics covered complexity analysis, problem solving methods, dynamic programming, graph problems. technical",
       "consultorWork": [
         {
-          "dates": [
-            "– 03/2020 stereotheque software"
-          ],
+          "dates": "prueba 1\n              ",
           "info": ""
         },
         {
-          "dates": [
-            "– 01/2019 infometrix sas"
-          ],
+          "dates": "prueba 1\n              ",
           "info": "engineer & tech lead development of rest service in flask-python, with dynamodb and neo4j database, visualization and presentation of data and functionalities with angular and angularjs. administration of repositories and services in aws. devops."
         },
         {

@@ -34,7 +34,7 @@
         <!--This text area displays the consultant's work experience and saves changes to it. -->
         <div class="control">
             <div *ngFor="let work of consultor.consultorWork; let i = index;">
-              <textarea class="textarea" placeholder="Textarea" (keyup)="saveWork($event, i)">
+              <textarea class="textarea" placeholder="Textarea" (change)="saveWork($event, i)">
                 Dates: {{ work.dates }}
                 Info: {{ work.info }}
               </textarea>
