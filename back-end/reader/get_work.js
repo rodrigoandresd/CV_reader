@@ -44,43 +44,48 @@ function getWork(consultorObj, tokens) {
     // const dateFormats = [/\d{2}\/\d{4}\s-\s\d{2}\/\d{4}/]
 
     let found_work = false;
-    for (let i = 0; i < tokens.length;) {
-      if (workSectionKeys.includes(tokens[i]) && workComplementKeys.includes(tokens[i + 1])) {
-        if (!found_work) {
-          let sections = [];
-          let currentSection = { dates: [], info: '' };
-          i += 2;
-          while (!workKeysStop.includes(tokens[i]) && i < tokens.length) {
-            const token = tokens[i];
-            const date = dateFormats.find(format => format.test(token));
-            if (date) {
-              // Se encontró una fecha, agregar la sección actual al array y crear una nueva sección
-              currentSection.info = currentSection.info.trim();
-              sections.push(currentSection);
-              currentSection = { dates: [date.exec(token)[0]], info: '' };
-            } else {
-              // No es una fecha, agregar el token a la información de la sección actual
-              currentSection.info += token + ' ';
-            }
-            i++;
+  for (let i = 0; i < tokens.length;) {
+    if (workSectionKeys.includes(tokens[i]) && workComplementKeys.includes(tokens[i + 1])) {
+      if (!found_work) {
+        let sections = [];
+        let currentSection = { dates: [], info: '' };
+        i += 2;
+        while (!workKeysStop.includes(tokens[i]) && i < tokens.length) {
+          const token = tokens[i];
+          const date = dateFormats.find(format => format.test(token));
+          if (date) {
+            // Found a date, get the 4 following tokens as the date range
+            const dateRange = tokens.slice(i+1, i+5).join(' ');
+            currentSection.dates = [dateRange];
+            i += 4;
+            // Add the section to the array and create a new one
+            currentSection.info = currentSection.info.trim();
+            sections.push(currentSection);
+            currentSection = { dates: [], info: '' };
+          } else {
+            // Not a date, add the token to the current section's info
+            currentSection.info += token + ' ';
           }
-          // Agregar la última sección al array
-          currentSection.info = currentSection.info.trim();
-          sections.push(currentSection);
-          // Guardar el array de secciones en el objeto de consultor
-          consultorObj['consultorWork'] = sections;
-          found_work = true;
-        } else {
           i++;
         }
+        // Add the last section to the array
+        currentSection.info = currentSection.info.trim();
+        sections.push(currentSection);
+        // Save the array of sections to the consultant object
+        consultorObj['consultorWork'] = sections;
+        found_work = true;
       } else {
         i++;
       }
+    } else {
+      i++;
     }
-    // If no work experience was found, add a default message to the consultant object.
-    if (!consultorObj.hasOwnProperty('consultorWork')) {
-      consultorObj['consultorWork'] = "Work experience not found";
-    }
+  }
+  // If no work experience was found, add a default message to the consultant object.
+  if (!consultorObj.hasOwnProperty('consultorWork')) {
+    consultorObj['consultorWork'] = "Work experience not found";
+  }
+
     return consultorObj;
   }
 

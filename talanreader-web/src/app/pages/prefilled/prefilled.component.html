@@ -39,7 +39,7 @@
                 Info: {{ work.info }}
               </textarea>
             </div>
-          </div>
+        </div>
 
         <h1> Employee Skills </h1>
         <!-- This text area displays the consultant's skills and saves changes to it. -->
@@ -50,7 +50,7 @@
 
         <!-- This button saves the changes made to a consultant's information. -->
         <div>
-            <button class="button" *ngFor="let consultor of consultors" (click)="onClick(consultor)">Save</button>
+            <button class="button" (click)="onClick(consultor)">Save</button>
         </div>
         <!-- This button downloads the consultant's CV as a PDF file. -->
         <div>
