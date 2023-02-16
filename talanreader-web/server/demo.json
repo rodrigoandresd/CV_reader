@@ -8,15 +8,19 @@
       "consultorAcademic": "experience 01/2018 – 06/2018 & 07/2019 - 12/2019 universidad de los andes teach & research assistant i investigate vulnerability detection techniques in source code and perform a mapping study on security vulnerabilities in the linux kernel. as a teaching assistant, i dictated the computer infrastructure laboratory, a course about operative systems, security and multithreading. 08/2017 – 12/2017 universidad de los andes algorithm design and analysis monitor preparation of review classes with the topics covered by the exams. topics covered complexity analysis, problem solving methods, dynamic programming, graph problems. technical",
       "consultorWork": [
         {
-          "dates": "TEST WORK 1",
+          "dates": [
+            "– 03/2020 stereotheque software"
+          ],
           "info": ""
         },
         {
-          "dates": "TEST WORK 2\n              ",
+          "dates": [
+            "– 01/2019 infometrix sas"
+          ],
           "info": "engineer & tech lead development of rest service in flask-python, with dynamodb and neo4j database, visualization and presentation of data and functionalities with angular and angularjs. administration of repositories and services in aws. devops."
         },
         {
-          "dates": "\n              ",
+          "dates": [],
           "info": "software & data engineer deployment and disposition of the data resulting from churn strategies of one of the company's clients, through a web application with visualization on a custom dashboard. development of solutions focused on analytics, performing tasks such as preparation, cleaning and loading of data, administration of databases, visualization. as well as support for daily operations. devops processes with docker and travisci technologies. develop rest services with python flask, and web applications with angular."
         }
       ],
