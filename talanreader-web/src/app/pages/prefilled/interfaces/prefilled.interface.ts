@@ -1,9 +1,10 @@
+// Define the interface for the Consultant object
 export interface Consultor {
-    id: any,
-    consultorEmail: String,
-    consultorPhone: String,
-    consultorName: String,
-    consultorAcademic: String,
-    consultorWork: String,
-    consultorSkills: String,
+    id: any,    // Unique identifier for the consultant
+    consultorEmail: String, // Email address of the consultant
+    consultorPhone: String, // Phone number of the consultant
+    consultorName: String, // Full name of the consultant
+    consultorAcademic: String, // Academic background of the consultant
+    consultorWork: String,  // Work experience of the consultant
+    consultorSkills: String, // Skills of the consultant
 }

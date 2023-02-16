@@ -1,5 +1,6 @@
-@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/utilities/_all.sass"; // Importing Bulma's utility classes.
 
+/* Styling for the middle title section */
 .middle_title {
   text-align: center;
   margin-top: 40px;
@@ -8,22 +9,26 @@
   color: #081c3d;
 }
 
+/* Styling for the main section containing the consultants information */
 .consultors {
   background-color: whitesmoke;
   height: 210vh;
   position: relative;
 }
 
+/* Styling for each individual consultant section */
 .consultor-div {
   margin: 2em;
 }
 
+/* Styling for the section headers */
 h1 {
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 0.5em;
 }
 
+/* Styling for the content cards containing the consultant's information */
 .card-content {
   background-color: white;
   padding: 1em;
@@ -32,6 +37,7 @@ h1 {
   margin-bottom: 1em;
 }
 
+/* Styling for the input fields */
 input[type="text"],
 textarea.textarea {
   width: 100%;
@@ -43,6 +49,7 @@ textarea.textarea {
   font-size: 1em;
 }
 
+/* Styling for the control section containing the textareas */
 .control {
   .textarea {
     margin-bottom: 1em;
@@ -56,6 +63,7 @@ textarea.textarea {
   }
 }
 
+/* Styling for the buttons */
 button.button {
   background-color: dodgerblue;
   color: white;
@@ -65,7 +73,7 @@ button.button {
   font-size: 1em;
   cursor: pointer;
   transition: all 0.15s ease-in-out;
-
+  /* Styling for the hover effect */
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);

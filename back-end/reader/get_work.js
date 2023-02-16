@@ -38,8 +38,7 @@ function getWork(consultorObj, tokens) {
     ];
 
     const dateFormats = [
-      /\d{1,2}\/\d{4}/, // MM/YYYY
-      /\d{4}/ // YYYY
+      /\d{1,2}\/\d{4}/ // MM/YYYY
     ];
 
     let found_work = false;
