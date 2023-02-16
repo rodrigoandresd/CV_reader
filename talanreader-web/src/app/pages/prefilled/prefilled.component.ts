@@ -57,9 +57,10 @@ export class PrefilledComponent implements OnInit {
     const academic = event.target as HTMLInputElement;
     this.consultors[0].consultorAcademic = academic.value;
   }
-  saveWork(event: Event): void {
+  saveWork(event: Event, index: number): void {
     const work = event.target as HTMLInputElement;
-    this.consultors[0].consultorWork = work.value;
+    const consultor = this.consultors[0];
+    consultor.consultorWork[index].dates = work.value;
   }
   saveSkills(event: Event): void {
     const skills = event.target as HTMLInputElement;
@@ -72,17 +73,26 @@ export class PrefilledComponent implements OnInit {
       const doc = new jsPDF.jsPDF();
       const imgData = '../assets/img/talan_logo.png';
       doc.addImage(imgData, 'PNG', 80, 10, 40, 20);
+
+      const tableData = [
+        ['Name', `${consultor.consultorName}`],
+        ['Email', `${consultor.consultorEmail}`],
+        ['Phone', `${consultor.consultorPhone}`],
+        ['Academic Experience', `${consultor.consultorAcademic}`],
+        ['Work Experience', ''],
+        ['Skills', `${consultor.consultorSkills}`],
+      ];
+
+      for (let i = 0; i < consultor.consultorWork.length; i++) {
+        const dates = consultor.consultorWork[i].dates.join(', ');
+        const info = consultor.consultorWork[i].info;
+        tableData.splice(4 + i, 0, [`Dates ${i + 1}`, dates], [`Info ${i + 1}`, info]);
+      }
+
       autoTable(doc, {
         startY: 40,
         head: [['Section', 'Description']],
-        body: [
-            ['Name', `${consultor.consultorName}`],
-            ['Email', `${consultor.consultorEmail}`],
-            ['Phone', `${consultor.consultorPhone}`],
-            ['Academic Experience', `${consultor.consultorAcademic}`],
-            ['Work Experience', `${consultor.consultorWork}`],
-            ['Skills', `${consultor.consultorSkills}`],
-        ],
+        body: tableData,
       });
       doc.save(`curriculum_vitae_of_${consultor.consultorName}.pdf`);
     } else {

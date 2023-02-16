@@ -31,11 +31,13 @@
         </div>
 
         <h1> Work Experience </h1>
-         <!-- This text area displays the consultant's work experience and saves changes to it. -->
-            <div class="control">
-                <textarea class="textarea" placeholder="Textarea" [value]="consultor.consultorWork"
-                    (keyup)="saveWork($event)"></textarea>
-        </div>
+        <!--This text area displays the consultant's work experience and saves changes to it. -->
+        <div class="control">
+            <textarea class="textarea" placeholder="Textarea" *ngFor="let work of consultor.consultorWork; let i = index" (keyup)="saveWork($event, i)">
+              Dates: {{ work.dates }}
+              Info: {{ work.info }}
+            </textarea>
+          </div>
 
         <h1> Employee Skills </h1>
         <!-- This text area displays the consultant's skills and saves changes to it. -->

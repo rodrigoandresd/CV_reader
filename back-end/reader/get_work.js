@@ -41,6 +41,8 @@ function getWork(consultorObj, tokens) {
       /\d{1,2}\/\d{4}/ // MM/YYYY
     ];
 
+    // const dateFormats = [/\d{2}\/\d{4}\s-\s\d{2}\/\d{4}/]
+
     let found_work = false;
     for (let i = 0; i < tokens.length;) {
       if (workSectionKeys.includes(tokens[i]) && workComplementKeys.includes(tokens[i + 1])) {
