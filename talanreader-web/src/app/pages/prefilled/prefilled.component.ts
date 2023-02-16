@@ -84,10 +84,9 @@ export class PrefilledComponent implements OnInit {
       ];
 
       for (let i = 0; i < consultor.consultorWork.length; i++) {
-        const dates = consultor.consultorWork[i].dates;
-        tableData.push([`Dates ${i + 1}`, dates]);
+        const dates = consultor.consultorWork[i].dates.join(', ');
         const info = consultor.consultorWork[i].info;
-        tableData.push([`Info ${i + 1}`, info]);
+        tableData[4][1] += `Dates ${i + 1}: ${dates}\nInfo ${i + 1}: ${info}\n\n`;
       }
 
       autoTable(doc, {
