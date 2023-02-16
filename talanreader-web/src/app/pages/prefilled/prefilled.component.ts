@@ -79,14 +79,14 @@ export class PrefilledComponent implements OnInit {
         ['Email', `${consultor.consultorEmail}`],
         ['Phone', `${consultor.consultorPhone}`],
         ['Academic Experience', `${consultor.consultorAcademic}`],
-        ['Work Experience', ''],
+        ['Work Experience'],
         ['Skills', `${consultor.consultorSkills}`],
       ];
 
       for (let i = 0; i < consultor.consultorWork.length; i++) {
         const dates = consultor.consultorWork[i].dates.join(', ');
         const info = consultor.consultorWork[i].info;
-        tableData.splice(4 + i, 0, [`Dates ${i + 1}`, dates], [`Info ${i + 1}`, info]);
+        tableData.splice(5 + i, 0, [`Dates ${i + 1}`, dates `Info ${i + 1}`, info]);
       }
 
       autoTable(doc, {
