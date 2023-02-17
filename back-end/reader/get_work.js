@@ -65,7 +65,7 @@ function getWork(consultorObj, tokens) {
   }
   // If no work experience was found, add a default message to the consultant object.
   if (!consultorObj.hasOwnProperty('consultorWork')) {
-    consultorObj['consultorWork'] = "Work not found";
+    consultorObj['consultorWork'] = ["Work not found"];
   }
   return consultorObj;
 }
@@ -99,6 +99,9 @@ function processWorkSection(totalWorkSection) {
 
     result.push({ dates: date, info: info });
   }
+  if (result.length === 0) {
+    result.push({dates: '', info: totalWorkSection});
+  };
   return result;
 }
 
