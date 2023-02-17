@@ -73,7 +73,7 @@ function getWork(consultorObj, tokens) {
 
 function processWorkSection(totalWorkSection) {
 
-  const regex = /\d{2}\/\d{4}(?:\s*.\s*\d{2}\/\d{4})?/g;// Expresión regular para buscar fechas en formato MM/YYYY
+  const regex = /(\d{2}\/\d{4}|[A-Za-z]+\s*\d{4}|\w+\s*\/\s*\d{4})(\s*.\s*(\d{2}\/\d{4}|[A-Za-z]+\s*\d{4}|\w+\s*\/\s*\d{4}|Actualmente|([a-z]+)))?/g;// Expresión regular para buscar fechas en formato MM/YYYY
   let matchText = totalWorkSection.matchAll(regex);
 
   let result = [];
