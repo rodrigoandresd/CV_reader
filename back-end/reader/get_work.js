@@ -37,39 +37,57 @@ function getWork(consultorObj, tokens) {
     "cursos",
   ];
 
-  const dateFormats = [
-    /\d{4}/ // YYYY
-  ];
-
   let found_work = false;
-    for (let i = 0; i < tokens.length;) {
-        if (workSectionKeys.includes(tokens[i]) && (workComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
-            if (!found_work) {
-                let workCurrentValue = "";
-                i++;
-                while (!workKeysStop.includes(tokens[i])) {
-                    workCurrentValue += tokens[i] + " ";
-                    i++;
-                    if (i === tokens.length || workKeysStop.includes(tokens[i])) {
-                        break;
-                    }
-                }
-                consultorObj['consultorWork'] = workCurrentValue.trim();
-                found_work = true;
-            } else {
-                i++;
-            }
-        } else {
-            i++;
-        }
-    }
+  let workSection = '';
+  for (let i = 0; i < tokens.length;) {
+      if (workSectionKeys.includes(tokens[i]) && (workComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
+          if (!found_work) {
+              let workCurrentValue = "";
+              i++;
+              while (!workKeysStop.includes(tokens[i])) {
+                  workCurrentValue += tokens[i] + " ";
+                  i++;
+                  if (i === tokens.length || workKeysStop.includes(tokens[i])) {
+                      break;
+                  }
+              }
+              workSection = workCurrentValue.trim();
+              found_work = true;
+              processWorkSection(workSection);
+          } else {
+              i++;
+          }
+      } else {
+          i++;
+      }
+  }
+
+
 
   // If no work experience was found, add a default message to the consultant object.
-  if (!consultorObj.hasOwnProperty('consultorWork')) {
-    consultorObj['consultorWork'] = "Work not found";
-}
+  // if (!consultorObj.hasOwnProperty('consultorWork')) {
+  //   consultorObj['consultorWork'] = "Work not found";
+  // }
 
   return consultorObj;
+}
+
+function processWorkSection (totalWorkSection) {
+  
+  const dateFormats = RegExp(/\d{4}/);
+  let currentDate = '';
+
+  const workTokens = totalWorkSection.split(/\s/);
+  for (let i = 0; i < workTokens.length; i++) {
+    let currentDateArray = dateFormats.exec(workTokens);
+    if (currentDateArray[0]) {
+      // console.log(currentDateArray[0]);
+      // console.log('inside the if');
+      currentDate = currentDateArray[0] + " " + currentDateArray[1] + " " + currentDateArray[2];
+      console.log('THE CURRENT DATE IS' + currentDate);
+      break;
+    }
+  }
 }
 
 
