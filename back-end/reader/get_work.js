@@ -40,55 +40,68 @@ function getWork(consultorObj, tokens) {
   let found_work = false;
   let workSection = '';
   for (let i = 0; i < tokens.length;) {
-      if (workSectionKeys.includes(tokens[i]) && (workComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
-          if (!found_work) {
-              let workCurrentValue = "";
-              i++;
-              while (!workKeysStop.includes(tokens[i])) {
-                  workCurrentValue += tokens[i] + " ";
-                  i++;
-                  if (i === tokens.length || workKeysStop.includes(tokens[i])) {
-                      break;
-                  }
-              }
-              workSection = workCurrentValue.trim();
-              found_work = true;
-              processWorkSection(workSection);
-          } else {
-              i++;
-          }
-      } else {
+    if (workSectionKeys.includes(tokens[i]) && (workComplementKeys.includes(tokens[i + 1]) || tokens[i + 1] !== ' ')) {
+      if (!found_work) {
+        let workCurrentValue = "";
+        i++;
+        while (!workKeysStop.includes(tokens[i])) {
+          workCurrentValue += tokens[i] + " ";
           i++;
+          if (i === tokens.length || workKeysStop.includes(tokens[i])) {
+            break;
+          }
+        }
+        workSection = workCurrentValue.trim();
+        found_work = true;
+        workCurrentValue = processWorkSection(workSection);
+        consultorObj['consultorWork'] = workCurrentValue;
+        found_work = true;
+      } else {
+        i++;
       }
+    } else {
+      i++;
+    }
   }
-
-
-
   // If no work experience was found, add a default message to the consultant object.
-  // if (!consultorObj.hasOwnProperty('consultorWork')) {
-  //   consultorObj['consultorWork'] = "Work not found";
-  // }
-
+  if (!consultorObj.hasOwnProperty('consultorWork')) {
+    consultorObj['consultorWork'] = "Work not found";
+  }
   return consultorObj;
 }
 
-function processWorkSection (totalWorkSection) {
-  
-  const dateFormats = RegExp(/\d{4}/);
-  let currentDate = '';
 
-  const workTokens = totalWorkSection.split(/\s/);
-  for (let i = 0; i < workTokens.length; i++) {
-    let currentDateArray = dateFormats.exec(workTokens);
-    if (currentDateArray[0]) {
-      // console.log(currentDateArray[0]);
-      // console.log('inside the if');
-      currentDate = currentDateArray[0] + " " + currentDateArray[1] + " " + currentDateArray[2];
-      console.log('THE CURRENT DATE IS' + currentDate);
-      break;
-    }
+function processWorkSection(totalWorkSection) {
+
+  const regex = /\d{2}\/\d{4}(?:\s*.\s*\d{2}\/\d{4})?/g;// Expresión regular para buscar fechas en formato MM/YYYY
+  let matchText = totalWorkSection.matchAll(regex);
+
+  let result = [];
+  let lastIndex = 0;
+  let dateList = [];
+  let infoList = [];
+
+  for (let match of matchText) {
+    let date = match[0];
+    dateList.push(date);
+
+    let info = totalWorkSection.slice(lastIndex, match.index).trim();
+    infoList.push(info)
+    lastIndex = match.index + date.length;
   }
+  let lastInfo = totalWorkSection.substring(lastIndex).trim();
+  infoList.push(lastInfo);
+  infoList.shift(lastInfo);
+
+  for (let i = 0; i < dateList.length; i++) {
+    let date = dateList[i];
+    let info = infoList[i];
+
+    result.push({ dates: date, info: info });
+  }
+  return result;
 }
 
-
 export { getWork };
+
+
