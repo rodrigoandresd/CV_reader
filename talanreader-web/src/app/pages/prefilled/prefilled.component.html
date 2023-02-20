@@ -33,12 +33,16 @@
         <h1> Work Experience </h1>
         <!--This text area displays the consultant's work experience and saves changes to it. -->
         <div class="control">
-            <div *ngFor="let work of consultor.consultorWork; let i = index;">
-              <textarea class="textarea" placeholder="Textarea" (change)="saveWork($event, i)">
-                Dates: {{ work.dates }}
-                Info: {{ work.info }}
-              </textarea>
-            </div>
+
+        <div *ngFor="let work of consultor.consultorWork; let i = index;">
+        <h4> Dates: </h4>
+        <!-- <input type="date" [value]="work.dates" (change)="saveWork($event, i)"> -->
+        <input type="text" (change)="saveWorkDates($event, i)" [value]="work.dates">
+        <h4> Info: </h4>
+        <textarea class="textarea" placeholder="Textarea" (change)="saveWorkInfo($event, i)">
+    {{ work.info }}
+        </textarea>
+        </div>
         </div>
 
         <h1> Employee Skills </h1>
@@ -55,6 +59,9 @@
         <!-- This button downloads the consultant's CV as a PDF file. -->
         <div>
             <button class="button" (click)="downloadPDF()">Download PDF</button>
+        </div>
+        <div>
+            <button class="button" (click)="goToHome()">Home</button>
         </div>
     </div>
 </section>

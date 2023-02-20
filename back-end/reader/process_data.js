@@ -40,7 +40,7 @@ async function processData(content) {
             console.log('Json created at process data');
         }
     });
-    //console.log(consultorObj);
+    console.log(consultorObj);
 };
 
 export { processData };

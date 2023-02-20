@@ -4,6 +4,8 @@ import { tap } from 'rxjs/operators';
 import { Consultor } from './interfaces/prefilled.interface';
 import * as jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { RestService } from '../../rest.service'; // Import RestService module
+import { Router } from '@angular/router'; // Import Router module
 
 // import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -16,7 +18,9 @@ import autoTable from 'jspdf-autotable';
 export class PrefilledComponent implements OnInit {
   consultors!: Consultor[];
   @Output() saveToJsonClick = new EventEmitter<Consultor>();
-  constructor(private consultorSvc: PrefilledService) { }
+  constructor(private consultorSvc: PrefilledService, private restService: RestService, private router: Router){ //TODO estoy inyect
+
+  }
 
 
   ngOnInit(): void {
@@ -57,10 +61,15 @@ export class PrefilledComponent implements OnInit {
     const academic = event.target as HTMLInputElement;
     this.consultors[0].consultorAcademic = academic.value;
   }
-  saveWork(event: Event, index: number): void {
+  saveWorkDates(event: Event, index: number): void {
     const work = event.target as HTMLInputElement;
     const consultor = this.consultors[0];
     consultor.consultorWork[index].dates = work.value;
+  }
+  saveWorkInfo(event: Event, index: number): void {
+    const work = event.target as HTMLInputElement;
+    const consultor = this.consultors[0];
+    consultor.consultorWork[index].info = work.value;
   }
   saveSkills(event: Event): void {
     const skills = event.target as HTMLInputElement;
@@ -79,12 +88,12 @@ export class PrefilledComponent implements OnInit {
         ['Email', `${consultor.consultorEmail}`],
         ['Phone', `${consultor.consultorPhone}`],
         ['Academic Experience', `${consultor.consultorAcademic}`],
-        ['Work Experience'],
+        ['Work Experience', ""],
         ['Skills', `${consultor.consultorSkills}`],
       ];
 
       for (let i = 0; i < consultor.consultorWork.length; i++) {
-        const dates = consultor.consultorWork[i].dates.join(', ');
+        const dates = consultor.consultorWork[i].dates;
         const info = consultor.consultorWork[i].info;
         tableData[4][1] += `Dates ${i + 1}: ${dates}\nInfo ${i + 1}: ${info}\n\n`;
       }
@@ -98,5 +107,12 @@ export class PrefilledComponent implements OnInit {
     } else {
       console.error('There are no consultants available to download in PDF.');
     }
+  }
+
+  goToHome(): void {
+    // Redirect to the form page after successful file upload
+    this.router.navigate(['/upload']).then(() => {
+      window.location.reload();
+    });
   }
 }
