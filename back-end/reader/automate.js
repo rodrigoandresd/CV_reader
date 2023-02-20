@@ -1,5 +1,5 @@
 import fs from "fs";
-import pdf from 'pdf-parse';
+import pdf from 'pdf-parse'; // uses promises
 import { processData } from "./process_data.js";
 
 

@@ -26,7 +26,7 @@ export class UploadComponent{
       alert('Please, select a PDF file.');
       return;
     }
-    // If the selected file is of type PDF, store it in a temporary variable
+    // If the selected file is of type PDF, store it in a temporary variable for multer
     this.fileTmp = {
       fileRaw:file,
       fileName:file.name
@@ -39,8 +39,7 @@ export class UploadComponent{
     const body = new FormData();
     // Append the file to the FormData object
     body.append('myFile', this.fileTmp.fileRaw, this.fileTmp.fileName);
-    // Append additional data, such as email address, to the FormData object
-    body.append('email','test@test.com')
+
 
     // Call the sendPost method of the RestService to send the file to the server
     this.restService.sendPost(body)
