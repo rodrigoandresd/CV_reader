@@ -17,7 +17,7 @@ Within the root folder of the project, the installation of the necessary depende
 
 ## Users
 	
-	This functionality is intended for consultants in the human talent area, who have access to the resumes of new employees joining the company.
+This functionality is intended for consultants in the human talent area, who have access to the resumes of new employees joining the company.
 
 ## Objectives
 
@@ -36,19 +36,23 @@ Develop an easy-to-use interface to upload and edit resumes according to the sta
  
 ### Tools used:
 
-    Backend: Several libraries were used for the module operation.
+* Backend: Several libraries were used for the module operation.
 
-    Express: Library used to start the web application.
+* Express: Library used to start the web application.
 
-    Cors: Library used as security protocol for web requests.
+* Cors: Library used as security protocol for web requests.
 
-    Nodemon: library used for the initialization of the web application from the backend.
+* Nodemon: library used for the initialization of the web application from the backend.
 
-    Multer: library used to capture the pdf file sent from frontend
+* Multer: library used to capture the pdf file sent from frontend
 
-    Pdf-parse: library used to extract information from pdf files. WARNING: this library requires the presence of a pdf file inside a test/data/05-versions-space folder. This file is a requirement for the correct functionality of the library, but it is not part of the project. 
+* Pdf-parse: library used to extract information from pdf files. WARNING: this library requires the presence of a pdf file inside a test/data/05-versions-space folder. This file is a requirement for the correct functionality of the library, but it is not part of the project.  For more information refer to the bug documentation:
 
-    For more information refer to the bug documentation: https://gitlab.com/autokent/pdf-parse/-/issues/24. Library documentation: https://www.npmjs.com/package/pdf-parse. 
+    https://gitlab.com/autokent/pdf-parse/-/issues/24
+
+Library documentation:
+
+    https://www.npmjs.com/package/pdf-parse. 
 
 ### Frontend:
 
@@ -61,13 +65,19 @@ Develop an easy-to-use interface to upload and edit resumes according to the sta
 
 ## Planning:
 
-Initially, the functionality of the module was planned and subdivided into the following functions: 
-    Information extraction: We identify the data type in which we are going to receive the information from the pdf.
-    Information processing: We identified different sections within the curriculums, so we started a standardization of the information, initially we put all the information in lowercase and additionally, we eliminated special characters such as accents or umlauts. After this, we proceed to tokenize and search the sections within the information tokens.
-    Storage of the information in a .JSON file: after having the information divided into sections, it is stored in a javascript object type data structure, and stored in a .JSON file.
-    Presentation of the information to the user for correction: the stored information is presented to the user, in a pre-filled format, so that he/she can modify the information extracted by the application. 
-    Update of the json file: Finally the corrected data is stored in the .JSON file.
-    PDF download of the information: In addition, the user can download a pdf file with the information extracted by the application, as well as the edited information.
+* Initially, the functionality of the module was planned and subdivided into the following functions:
+
+* Information extraction: We identify the data type in which we are going to receive the information from the pdf.
+
+* Information processing: We identified different sections within the curriculums, so we started a standardization of the information, initially we put all the information in lowercase and additionally, we eliminated special characters such as accents or umlauts. After this, we proceed to tokenize and search the sections within the information tokens.
+
+* Storage of the information in a .JSON file: after having the information divided into sections, it is stored in a javascript object type data structure, and stored in a .JSON file.
+
+* Presentation of the information to the user for correction: the stored information is presented to the user, in a pre-filled format, so that he/she can modify the information extracted by the application.
+
+* Update of the json file: Finally the corrected data is stored in the .JSON file.
+
+* PDF download of the information: In addition, the user can download a pdf file with the information extracted by the application, as well as the edited information.
 
 ## System architecture
 
@@ -84,10 +94,10 @@ The program starts its execution in the index.js file, found in the backend fold
 
 * reader/process_data.js: This module contains the instructions for processing the information and is in charge of calling different functions, each one in charge of processing a specific segment of the information. Finally, this module creates a javascript object and stores it in a .JSON file.
 
-    Name, phone and email processing - get_personal_data.js.
-    Academic experience processing - get_academic.js.
-    Work experience - get_work.js.
-    Skills - get_skills.js.
+Name, phone and email processing - get_personal_data.js.
+Academic experience processing - get_academic.js.
+Work experience - get_work.js.
+Skills - get_skills.js.
 
 * reader/get_personal_data.js: Module in charge of extracting personal data such as the consultant's name, email and cell phone number from the resume.
 
