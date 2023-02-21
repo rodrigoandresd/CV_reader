@@ -22,7 +22,7 @@ async function processData(content) {
     let consultorObj = {};
 
     // Extract the name, email, phone, academic, work, and skills data from the tokens
-    consultorObj['id'] = 1; //Jsonserver requirement
+    consultorObj['id'] = 1; //Jsonserver requirement, must be changed at the time of implementation
     consultorObj = getName(consultorObj, tokens);
     consultorObj = getEmail(consultorObj, tokens);
     consultorObj = getPhone(consultorObj, tokens);

@@ -59,7 +59,6 @@ function getWork(consultorObj, tokens) {
         }
          // Trim the current value of the work section to remove any leading or trailing spaces.
         workSection = workCurrentValue.trim();
-        found_work = true;
         workCurrentValue = processWorkSection(workSection);
         consultorObj['consultorWork'] = workCurrentValue;
         found_work = true;
