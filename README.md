@@ -46,7 +46,8 @@ Develop an easy-to-use interface to upload and edit resumes according to the sta
 
 * Multer: library used to capture the pdf file sent from frontend
 
-* Pdf-parse: library used to extract information from pdf files. WARNING: this library requires the presence of a pdf file inside a test/data/05-versions-space folder. This file is a requirement for the correct functionality of the library, but it is not part of the project.  For more information refer to the bug documentation:
+* Pdf-parse: library used to extract information from pdf files. WARNING: this library requires the presence of a pdf file inside a test/data/05-versions-space folder. This file is a requirement for the correct functionality of the library, but it is not part of the project.  
+For more information refer to the bug documentation:
 
     https://gitlab.com/autokent/pdf-parse/-/issues/24
 
@@ -56,12 +57,12 @@ Library documentation:
 
 ### Frontend:
 
-    Jspdf / jspdf-autotable: library installed on Angularjs, which allows to download a pdf file according to the content represented in the frontend.
+Jspdf / jspdf-autotable: library installed on Angularjs, which allows to download a pdf file according to the content represented in the frontend.
 
 ## Versions: 
 
-    Node: version 14.21.2
-    Angular CLI: version 15.1.3
+Node: version 14.21.2
+Angular CLI: version 15.1.3
 
 ## Planning:
 
