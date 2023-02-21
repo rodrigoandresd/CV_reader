@@ -46,11 +46,13 @@ Develop an easy-to-use interface to upload and edit resumes according to the sta
 
 * Multer: library used to capture the pdf file sent from frontend
 
-* Pdf-parse: library used to extract information from pdf files. WARNING: this library requires the presence of a pdf file inside a test/data/05-versions-space folder. This file is a requirement for the correct functionality of the library, but it is not part of the project.  
+* Pdf-parse: library used to extract information from pdf files. WARNING: this library requires the presence of a pdf file inside a test/data/05-versions-space folder. This file is a requirement for the correct functionality of the library, but it is not part of the project.
+
+
 For more information refer to the bug documentation:
 
     https://gitlab.com/autokent/pdf-parse/-/issues/24
-
+    
 Library documentation:
 
     https://www.npmjs.com/package/pdf-parse. 
