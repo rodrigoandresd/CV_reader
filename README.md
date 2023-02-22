@@ -110,6 +110,20 @@ Skills - get_skills.js.
 
 * reader/get_skills.js: Module in charge of extracting the skills or abilities that the consultant reflects in his resume.
 
+## Running Backend
+
+    nodemon index.js
+
+## Runing Frontend
+
+Jsonserver
+
+    npm run serverAPI
+
+Angular app
+
+    ng serve
+
 ## Authors
 
 * [Paola Suarez](https://github.com/paosua86)
